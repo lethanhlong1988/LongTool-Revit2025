@@ -6,7 +6,7 @@ namespace LongTool
 {
     public class App : IExternalApplication
     {
-        //Commant kiểm tra thử cái nhé
+        
         public Result OnStartup(UIControlledApplication application)
         {
             try
