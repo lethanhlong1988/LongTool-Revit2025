@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputType>Library</OutputType>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+
+		<AssemblyName>LongTool</AssemblyName>
+		<RootNamespace>LongTool</RootNamespace>
+		<Version>1.0.0</Version>
+
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="RevitAPI">
+			<HintPath Condition="Exists('C:\Program Files\Autodesk\Revit 2025\RevitAPI.dll')">C:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+			<HintPath Condition="Exists('C:\Program Files\Autodesk\Revit 2026\RevitAPI.dll')">C:\Program Files\Autodesk\Revit 2026\RevitAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+
+		<Reference Include="RevitAPIUI">
+			<HintPath Condition="Exists('C:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll')">C:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+			<HintPath Condition="Exists('C:\Program Files\Autodesk\Revit 2026\RevitAPIUI.dll')">C:\Program Files\Autodesk\Revit 2026\RevitAPIUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<!-- Copy Resources vào output -->
+	<ItemGroup>
+		<Content Include="Resources\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>
+		</Content>
+	</ItemGroup>
+
+	<!-- Copy file .addin vào output -->
+	<ItemGroup>
+		<Content Include="LongTool.addin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="FinishEngine\Generation\" />
+	  <Folder Include="FinishEngine\Debug\" />
+	  <Folder Include="RoomFinish\Utils\" />
+	</ItemGroup>
+
+	<!-- Tự động copy .addin vào thư mục Revit Addins -->
+	<Target Name="CopyAddinToRevit" AfterTargets="Build">
+		<PropertyGroup>
+			<RevitVersion Condition="Exists('C:\Program Files\Autodesk\Revit 2025\')">2025</RevitVersion>
+			<RevitVersion Condition="Exists('C:\Program Files\Autodesk\Revit 2026\')">2026</RevitVersion>
+			<AddinFolder Condition="'$(RevitVersion)' != ''">C:\ProgramData\Autodesk\Revit\Addins\$(RevitVersion)\</AddinFolder>
+		</PropertyGroup>
+		<!-- Copy DLL -->
+		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AddinFolder)" Condition="Exists('$(AddinFolder)') and '$(Configuration)' == 'Debug'" />
+		<!-- Copy Resources -->
+		<Copy SourceFiles="@(Content)" DestinationFolder="$(AddinFolder)\%(RecursiveDir)" Condition="Exists('$(AddinFolder)') and '$(Configuration)' == 'Debug'" />
+		<Message Text="Copied files to $(AddinFolder)" Condition="Exists('$(AddinFolder)') and '$(Configuration)' == 'Debug'" />
+	</Target>
+</Project>

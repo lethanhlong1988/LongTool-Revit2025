@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>LongTool</Name>
+    <Assembly>
+     C:\Users\letha\Desktop\Long\Hoc Hanh\REVIT API\Bai 4\LongTool\LongTool\bin\Debug\net8.0-windows\LongTool.dll
+    </Assembly>
+    <FullClassName>LongTool.App</FullClassName>
+    <AddInId>3F2A4A7B-8E1B-4A1E-9D6F-6A8B2E4C9F51</AddInId>
+    <VendorId>LONG</VendorId>
+    <VendorDescription>Learning Revit API</VendorDescription>
+  </AddIn>
+</RevitAddIns>
+
+<!-- Test -->
