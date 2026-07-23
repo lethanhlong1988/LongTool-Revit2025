@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-
-using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
 using LongTool.RoomFinish.Models;
 using LongTool.RoomFinish.Renderers;
 using LongTool.RoomFinish.Services;
-
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LongTool.RoomFinish.Commands;
-
 
 [Transaction(TransactionMode.Manual)]
 [Regeneration(RegenerationOption.Manual)]
@@ -28,189 +23,67 @@ public class RoomFinishCommand : IExternalCommand
             "Room Finish",
             "Command Started");
 
-
         try
         {
-            Document document =
-                commandData.Application.ActiveUIDocument.Document;
-
+            Document doc =
+                commandData.Application
+                    .ActiveUIDocument
+                    .Document;
 
             // ============================
-            // 1. Collect Rooms
+            // 1. Build Room Data
             // ============================
 
-            RoomCollector roomCollector =
-                new RoomCollector(document);
+            RoomFinishService roomFinishService =
+                new RoomFinishService(doc);
 
             List<RoomData> rooms =
-                roomCollector.Collect();
-
-
+                roomFinishService.Build();
 
             // ============================
-            // 2. Build Room Boundary
-            // ============================
-
-            RoomBoundaryService boundaryService =
-                new RoomBoundaryService(document);
-
-
-            foreach (RoomData room in rooms)
-            {
-                boundaryService.Build(room);
-            }
-
-            // ============================
-            // 2.5 Analyze Room Spatial
-            // ============================
-
-            RoomSpatialService spatialService =
-                new RoomSpatialService(document);
-
-
-            if (rooms.Count > 0)
-            {
-                spatialService.Build(rooms[0]);
-            }
-
-            // ============================
-            // DEBUG FINISH FACES
+            // 2. Render Room Boundary
             // ============================
 
             if (rooms.Count > 0)
             {
-                RoomData room = rooms[0];
+                using Transaction transaction =
+                    new Transaction(
+                        doc,
+                        "Draw Room Boundary");
 
+                transaction.Start();
 
-                Debug.WriteLine("==============================");
-                Debug.WriteLine(
-                    $"Room : {room.Number}");
+                RoomBoundaryRenderer renderer =
+                    new RoomBoundaryRenderer(
+                        doc,
+                        doc.ActiveView);
 
-                Debug.WriteLine(
-                    $"Finish Face Count : {room.FinishFaces.Count}");
+                renderer.Draw(rooms);
 
-                Debug.WriteLine("==============================");
-
-
-                foreach (FinishFaceData faceData in room.FinishFaces)
-                {
-                    Debug.WriteLine("------------------------------");
-
-                    Debug.WriteLine(
-                        $"Element Id : {faceData.HostElement.Id}");
-
-                    Debug.WriteLine(
-                        $"Category : {faceData.HostElement.Category?.Name}");
-
-                    Debug.WriteLine(
-                        $"Area : {faceData.Area}");
-                }
+                transaction.Commit();
             }
 
-
-
             // ============================
-            // 3. Render Room Boundary
+            // 3. Debug Report
             // ============================
 
-            if (rooms.Count > 0)
-            {
-                using (Transaction transaction =
-                       new Transaction(
-                           document,
-                           "Draw Room Boundary"))
-                {
-                    transaction.Start();
+            RoomDebugService debugService =
+                new RoomDebugService();
 
-
-                    RoomBoundaryRenderer renderer =
-                        new RoomBoundaryRenderer(
-                            document,
-                            document.ActiveView);
-
-
-                    foreach (RoomData room in rooms)
-                    {
-                        renderer.Draw(room);
-                    }
-
-
-                    transaction.Commit();
-                }
-            }
-
-
-
-            // ============================
-            // DEBUG ROOM BOUNDARY
-            // ============================
-
-            Debug.WriteLine("==============================");
-            Debug.WriteLine($"Total Rooms : {rooms.Count}");
-            Debug.WriteLine("==============================");
-
-
-            if (rooms.Count > 0)
-            {
-                RoomData room = rooms[0];
-
-
-                Debug.WriteLine(
-                    $"Room Number : {room.Number}");
-
-                Debug.WriteLine(
-                    $"Room Name   : {room.Name}");
-
-                Debug.WriteLine(
-                    $"Area        : {room.Area}");
-
-                Debug.WriteLine(
-                    $"Loop Count  : {room.BoundaryLoops.Count}");
-
-
-
-                for (int i = 0;
-                     i < room.BoundaryLoops.Count;
-                     i++)
-                {
-                    CurveLoop loop =
-                        room.BoundaryLoops[i];
-
-
-                    Debug.WriteLine("------------------------------");
-
-                    Debug.WriteLine(
-                        $"Loop Index : {i}");
-
-                    Debug.WriteLine(
-                        $"Is Open : {loop.IsOpen()}");
-
-
-                    Debug.WriteLine(
-                        $"Curve Count : {loop.Count()}");
-
-
-                    foreach (Curve curve in loop)
-                    {
-                        Debug.WriteLine(
-                            $"Curve Type : {curve.GetType().Name}");
-
-                        Debug.WriteLine(
-                            $"Length : {curve.Length}");
-                    }
-                }
-            }
-
-
-            Debug.WriteLine("==============================");
-            Debug.WriteLine("DEBUG FINISHED");
-            Debug.WriteLine("==============================");
-
+            debugService.PrintReport(rooms);
 
             return Result.Succeeded;
         }
         catch (Exception ex)
         {
+            Debug.WriteLine("========== EXCEPTION ==========");
+            Debug.WriteLine(ex.ToString());
+            Debug.WriteLine("===============================");
+
+            TaskDialog.Show(
+                "Exception",
+                ex.ToString());
+
             message = ex.Message;
 
             return Result.Failed;

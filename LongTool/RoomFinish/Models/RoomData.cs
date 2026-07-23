@@ -51,4 +51,14 @@ public class RoomData
     /// Các mặt hoàn thiện bao quanh Room
     /// </summary>
     public List<FinishFaceData> FinishFaces { get; } = [];
+
+    /// <summary>
+    /// Các Element hoàn thiện bao quanh Room
+    /// </summary>
+    public List<FinishElementData> FinishElements { get; } = [];
+
+    /// <summary>
+    /// Generated Finish Solids
+    /// </summary>
+    public List<FinishSolidData> FinishSolids { get; } = [];
 }

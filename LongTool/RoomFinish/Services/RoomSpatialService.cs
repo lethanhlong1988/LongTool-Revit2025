@@ -75,6 +75,19 @@ public class RoomSpatialService
                     continue;
                 }
 
+                BoundingBoxUV box =
+                    face.GetBoundingBox();
+
+                UV uvCenter =
+                    new UV(
+                        (box.Min.U + box.Max.U) / 2.0,
+                        (box.Min.V + box.Max.V) / 2.0);
+
+                XYZ center =
+                    face.Evaluate(uvCenter);
+
+                XYZ normal =
+                    face.ComputeNormal(uvCenter);
 
                 FinishFaceData finishFace =
                     new FinishFaceData
@@ -85,7 +98,11 @@ public class RoomSpatialService
 
                         BoundarySubface = subface,
 
-                        Area = face.Area
+                        Area = face.Area,
+
+                        Center = center,
+
+                        Normal = normal
                     };
 
 

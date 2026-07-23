@@ -9,21 +9,28 @@ public class FinishFaceData
     /// </summary>
     public Element HostElement { get; init; }
 
-
     /// <summary>
     /// Mặt hình học tiếp xúc với Room
     /// </summary>
     public Face Face { get; init; }
-
 
     /// <summary>
     /// Thông tin liên kết Room - Element
     /// </summary>
     public SpatialElementBoundarySubface BoundarySubface { get; init; }
 
-
     /// <summary>
     /// Diện tích mặt hoàn thiện
     /// </summary>
     public double Area { get; init; }
+
+    /// <summary>
+    /// Hướng của mặt hoàn thiện
+    /// </summary>
+    public XYZ Normal { get; init; }
+
+    /// <summary>
+    /// Điểm trung tâm của Face
+    /// </summary>
+    public XYZ Center { get; init; }
 }
