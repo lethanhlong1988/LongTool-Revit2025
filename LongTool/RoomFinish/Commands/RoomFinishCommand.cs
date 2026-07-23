@@ -60,6 +60,53 @@ public class RoomFinishCommand : IExternalCommand
                 boundaryService.Build(room);
             }
 
+            // ============================
+            // 2.5 Analyze Room Spatial
+            // ============================
+
+            RoomSpatialService spatialService =
+                new RoomSpatialService(document);
+
+
+            if (rooms.Count > 0)
+            {
+                spatialService.Build(rooms[0]);
+            }
+
+            // ============================
+            // DEBUG FINISH FACES
+            // ============================
+
+            if (rooms.Count > 0)
+            {
+                RoomData room = rooms[0];
+
+
+                Debug.WriteLine("==============================");
+                Debug.WriteLine(
+                    $"Room : {room.Number}");
+
+                Debug.WriteLine(
+                    $"Finish Face Count : {room.FinishFaces.Count}");
+
+                Debug.WriteLine("==============================");
+
+
+                foreach (FinishFaceData faceData in room.FinishFaces)
+                {
+                    Debug.WriteLine("------------------------------");
+
+                    Debug.WriteLine(
+                        $"Element Id : {faceData.HostElement.Id}");
+
+                    Debug.WriteLine(
+                        $"Category : {faceData.HostElement.Category?.Name}");
+
+                    Debug.WriteLine(
+                        $"Area : {faceData.Area}");
+                }
+            }
+
 
 
             // ============================
