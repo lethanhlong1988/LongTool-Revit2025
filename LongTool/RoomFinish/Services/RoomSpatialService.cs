@@ -33,6 +33,10 @@ public class RoomSpatialService
             _document.GetElement(roomData.Id) as Room;
 
 
+        roomData.FinishFaces.Clear();
+        roomData.FinishElements.Clear();
+        roomData.FinishSolids.Clear();
+
         if (room == null)
         {
             return;
@@ -104,7 +108,6 @@ public class RoomSpatialService
 
                         Normal = normal
                     };
-
 
                 roomData.FinishFaces.Add(finishFace);
             }

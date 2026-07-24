@@ -1,31 +1,30 @@
 ﻿using System;
 using Autodesk.Revit.UI;
 
-namespace LongTool.UI.Ribbon
+namespace LongTool.UI.Ribbon;
+
+public class RibbonService
 {
-    public class RibbonService
+    private readonly UIControlledApplication _application;
+    private readonly string _assemblyPath;
+
+    public RibbonService(UIControlledApplication application)
     {
-        private readonly UIControlledApplication _application;
-        private readonly string _assemblyPath;
+        _application = application;
+        _assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+    }
 
-        public RibbonService(UIControlledApplication application)
+    public void CreateRibbon()
+    {
+        try
         {
-            _application = application;
-            _assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var ribbonBuilder = new RibbonBuilder(_application);
+            ribbonBuilder.Build();
         }
-
-        public void CreateRibbon()
+        catch (Exception ex)
         {
-            try
-            {
-                var ribbonBuilder = new RibbonBuilder(_application);
-                ribbonBuilder.Build();
-            }
-            catch (Exception ex)
-            {
-                TaskDialog.Show("Lỗi tạo Ribbon", ex.Message);
-                throw;
-            }
+            TaskDialog.Show("Lỗi tạo Ribbon", ex.Message);
+            throw;
         }
     }
 }

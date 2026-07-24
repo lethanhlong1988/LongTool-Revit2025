@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Autodesk.Revit.DB;
-
-using LongTool.RoomFinish.Models;
+﻿using Autodesk.Revit.DB;
 using LongTool.RoomFinish.Builders;
+using LongTool.RoomFinish.Models;
+using LongTool.RoomFinish.Renderers;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace LongTool.RoomFinish.Services;
@@ -25,6 +24,8 @@ public class RoomFinishService
     private readonly FinishSolidBuilder _finishSolidBuilder;
 
     private readonly BoundaryFaceFinder _faceFinder;
+
+    private readonly FinishSolidRenderer _finishSolidRenderer;
 
 
     public RoomFinishService(Document document)
@@ -53,6 +54,9 @@ public class RoomFinishService
 
         _faceFinder =
             new BoundaryFaceFinder(document);
+
+        _finishSolidRenderer =
+            new FinishSolidRenderer(document);
     }
 
 
@@ -96,6 +100,7 @@ public class RoomFinishService
 
 
         _finishSolidBuilder.Build(room);
+
     }
 
 

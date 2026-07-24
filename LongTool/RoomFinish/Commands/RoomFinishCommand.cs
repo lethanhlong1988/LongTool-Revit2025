@@ -19,9 +19,8 @@ public class RoomFinishCommand : IExternalCommand
         ref string message,
         ElementSet elements)
     {
-        TaskDialog.Show(
-            "Room Finish",
-            "Command Started");
+        Debug.WriteLine(
+            "Room Finish Started");
 
         try
         {
@@ -49,16 +48,30 @@ public class RoomFinishCommand : IExternalCommand
                 using Transaction transaction =
                     new Transaction(
                         doc,
-                        "Draw Room Boundary");
+                        "Create Room Finish");
 
                 transaction.Start();
 
-                RoomBoundaryRenderer renderer =
+
+                RoomBoundaryRenderer boundaryRenderer =
                     new RoomBoundaryRenderer(
                         doc,
                         doc.ActiveView);
 
-                renderer.Draw(rooms);
+
+                boundaryRenderer.Draw(rooms);
+
+
+
+                FinishSolidRenderer solidRenderer =
+                    new FinishSolidRenderer(doc);
+
+
+                foreach (RoomData room in rooms)
+                {
+                    solidRenderer.Render(room);
+                }
+
 
                 transaction.Commit();
             }
