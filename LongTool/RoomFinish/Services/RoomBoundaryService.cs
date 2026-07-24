@@ -15,13 +15,15 @@ public class RoomBoundaryService
 {
     private readonly Document _document;
 
+
     public RoomBoundaryService(Document document)
     {
         _document = document;
     }
 
+
     /// <summary>
-    /// Xây dựng BoundaryLoops cho RoomData.
+    /// Xây dựng Boundary data cho RoomData.
     /// </summary>
     public void Build(RoomData roomData)
     {
@@ -30,33 +32,63 @@ public class RoomBoundaryService
         if (room == null)
             return;
 
+
         var options = new SpatialElementBoundaryOptions
         {
             SpatialElementBoundaryLocation = SpatialElementBoundaryLocation.Finish
         };
 
+
         IList<IList<BoundarySegment>>? boundarySegments =
             room.GetBoundarySegments(options);
+
 
         if (boundarySegments == null)
             return;
 
+
         roomData.BoundaryLoops.Clear();
+
+        roomData.BoundarySegments.Clear();
+
 
         foreach (IList<BoundarySegment> boundaryLoop in boundarySegments)
         {
             CurveLoop curveLoop = new CurveLoop();
 
+            List<BoundarySegmentData> segmentDataList = [];
+
+
             foreach (BoundarySegment boundarySegment in boundaryLoop)
             {
                 Curve curve = boundarySegment.GetCurve();
 
+
+                Element? element =
+                    _document.GetElement(
+                        boundarySegment.ElementId);
+
+
                 curveLoop.Append(curve);
+
+
+                segmentDataList.Add(
+                    new BoundarySegmentData
+                    {
+                        Curve = curve,
+
+                        Element = element,
+
+                        ElementId = boundarySegment.ElementId,
+
+                        Category = element?.Category
+                    });
             }
 
+
             roomData.BoundaryLoops.Add(curveLoop);
+
+            roomData.BoundarySegments.Add(segmentDataList);
         }
-
-
     }
 }

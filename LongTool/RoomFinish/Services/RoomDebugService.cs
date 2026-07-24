@@ -2,63 +2,89 @@
 using System.Diagnostics;
 using LongTool.RoomFinish.Models;
 
-namespace LongTool.RoomFinish.Services
+namespace LongTool.RoomFinish.Services;
+
+public class RoomDebugService
 {
-    public class RoomDebugService
+    private readonly BoundaryDebugService _boundaryDebugService;
+
+
+    public RoomDebugService()
     {
-        public void PrintReport(List<RoomData> rooms)
-        {
-            if (rooms == null || rooms.Count == 0)
-            {
-                Debug.WriteLine("==============================");
-                Debug.WriteLine("No rooms found in the document");
-                Debug.WriteLine("==============================");
-                return;
-            }
+        _boundaryDebugService =
+            new BoundaryDebugService();
+    }
 
-            PrintRoomHeader(rooms);
 
-            foreach (RoomData room in rooms)
-            {
-                PrintRoomInfo(room);
-                Debug.WriteLine("------------------------------");
-            }
-
-            Debug.WriteLine("==============================");
-            Debug.WriteLine($"Total Rooms Processed: {rooms.Count}");
-            Debug.WriteLine("DEBUG FINISHED");
-            Debug.WriteLine("==============================");
-        }
-
-        private void PrintRoomHeader(List<RoomData> rooms)
+    public void PrintReport(List<RoomData> rooms)
+    {
+        if (rooms == null || rooms.Count == 0)
         {
             Debug.WriteLine("==============================");
-            Debug.WriteLine($"Total Rooms : {rooms.Count}");
+            Debug.WriteLine("No rooms found in the document");
             Debug.WriteLine("==============================");
+
+            return;
         }
 
-        private void PrintRoomInfo(RoomData room)
+
+        PrintRoomHeader(rooms);
+
+
+        foreach (RoomData room in rooms)
         {
-            Debug.WriteLine(
-                $"Room Number : {room.Number}");
+            PrintRoomInfo(room);
 
-            Debug.WriteLine(
-                $"Room Name   : {room.Name}");
-
-            Debug.WriteLine(
-                $"Area        : {room.Area}");
-
-            Debug.WriteLine(
-                $"Loop Count  : {room.BoundaryLoops?.Count ?? 0}");
-
-            Debug.WriteLine(
-                $"Finish Face Count : {room.FinishFaces?.Count ?? 0}");
-
-            Debug.WriteLine(
-                $"Finish Element Count : {room.FinishElements?.Count ?? 0}");
-
-            Debug.WriteLine(
-                $"Finish Solid Count : {room.FinishSolids?.Count ?? 0}");
+            Debug.WriteLine("------------------------------");
         }
+
+
+        Debug.WriteLine("==============================");
+        Debug.WriteLine($"Total Rooms Processed: {rooms.Count}");
+        Debug.WriteLine("DEBUG FINISHED");
+        Debug.WriteLine("==============================");
+    }
+
+
+    private void PrintRoomHeader(List<RoomData> rooms)
+    {
+        Debug.WriteLine("==============================");
+        Debug.WriteLine($"Total Rooms : {rooms.Count}");
+        Debug.WriteLine("==============================");
+    }
+
+
+    private void PrintRoomInfo(RoomData room)
+    {
+        Debug.WriteLine(
+            $"Room Number : {room.Number}");
+
+        Debug.WriteLine(
+            $"Room Name   : {room.Name}");
+
+        Debug.WriteLine(
+            $"Area        : {room.Area}");
+
+        Debug.WriteLine(
+            $"Loop Count  : {room.BoundaryLoops.Count}");
+
+        Debug.WriteLine(
+            $"Boundary Segment Loop Count : {room.BoundarySegments.Count}");
+
+
+        foreach (List<BoundarySegmentData> segments in room.BoundarySegments)
+        {
+            _boundaryDebugService.Print(segments);
+        }
+
+
+        Debug.WriteLine(
+            $"Finish Face Count : {room.FinishFaces.Count}");
+
+        Debug.WriteLine(
+            $"Finish Element Count : {room.FinishElements.Count}");
+
+        Debug.WriteLine(
+            $"Finish Solid Count : {room.FinishSolids.Count}");
     }
 }

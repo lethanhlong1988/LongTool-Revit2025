@@ -27,14 +27,15 @@ public class RoomBoundaryRenderer
 
     public void Draw(RoomData room)
     {
+        if (room == null) return;
+
         foreach (CurveLoop loop in room.BoundaryLoops)
         {
             foreach (Curve curve in loop)
             {
-                _document.Create
-                    .NewDetailCurve(
-                        _view,
-                        curve);
+                _document.Create.NewDetailCurve(
+                    _view,
+                    curve);
             }
         }
     }

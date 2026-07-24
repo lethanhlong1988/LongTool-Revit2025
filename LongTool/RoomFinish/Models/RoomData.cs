@@ -48,14 +48,22 @@ public class RoomData
 
 
     /// <summary>
+    /// Các đoạn Boundary của Room kèm Element tạo nên chúng
+    /// </summary>
+    public List<List<BoundarySegmentData>> BoundarySegments { get; } = [];
+
+
+    /// <summary>
     /// Các mặt hoàn thiện bao quanh Room
     /// </summary>
     public List<FinishFaceData> FinishFaces { get; } = [];
+
 
     /// <summary>
     /// Các Element hoàn thiện bao quanh Room
     /// </summary>
     public List<FinishElementData> FinishElements { get; } = [];
+
 
     /// <summary>
     /// Generated Finish Solids

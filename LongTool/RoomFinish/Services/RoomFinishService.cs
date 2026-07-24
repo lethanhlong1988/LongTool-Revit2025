@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Autodesk.Revit.DB;
+
 using LongTool.RoomFinish.Models;
 using LongTool.RoomFinish.Builders;
+using System.Diagnostics;
 
 namespace LongTool.RoomFinish.Services;
 
@@ -12,64 +15,107 @@ namespace LongTool.RoomFinish.Services;
 public class RoomFinishService
 {
     private readonly RoomCollector _roomCollector;
+
     private readonly RoomBoundaryService _boundaryService;
+
+    private readonly BoundaryFaceService _boundaryFaceService;
+
     private readonly RoomSpatialService _spatialService;
+
     private readonly FinishSolidBuilder _finishSolidBuilder;
+
+    private readonly BoundaryFaceFinder _faceFinder;
+
 
     public RoomFinishService(Document document)
     {
         ArgumentNullException.ThrowIfNull(document);
 
+
         _roomCollector =
             new RoomCollector(document);
+
 
         _boundaryService =
             new RoomBoundaryService(document);
 
+
+        _boundaryFaceService =
+            new BoundaryFaceService();
+
+
         _spatialService =
             new RoomSpatialService(document);
 
+
         _finishSolidBuilder =
             new FinishSolidBuilder();
+
+        _faceFinder =
+            new BoundaryFaceFinder(document);
     }
 
-    /// <summary>
-    /// Build complete room finish data for all rooms in the document
-    /// </summary>
-    /// <returns>List of RoomData with complete finish information</returns>
+
     public List<RoomData> Build()
     {
-        // Step 1: Collect all rooms
-        List<RoomData> rooms = _roomCollector.Collect();
+        List<RoomData> rooms =
+            _roomCollector.Collect();
+
 
         if (rooms.Count == 0)
         {
             return rooms;
         }
 
-        // Step 2: Build complete room data
+
         foreach (RoomData room in rooms)
         {
             BuildRoomData(room);
         }
 
+
         return rooms;
     }
 
-    /// <summary>
-    /// Build complete data for a single room
-    /// </summary>
-    /// <param name="room">RoomData to build</param>
+
     public void BuildRoomData(RoomData room)
     {
         ArgumentNullException.ThrowIfNull(room);
 
+
         _boundaryService.Build(room);
+
+
+        ProcessBoundaryFaces(room);
+
 
         _spatialService.Build(room);
 
+
         FinishElementBuilder.Build(room);
+
 
         _finishSolidBuilder.Build(room);
     }
+
+
+    private void ProcessBoundaryFaces(RoomData room)
+    {
+        foreach (List<BoundarySegmentData> segments in room.BoundarySegments)
+        {
+            foreach (BoundarySegmentData segment in segments)
+            {
+                Face? face =
+                    _boundaryFaceService.FindFace(segment);
+
+                segment.Face = face;
+
+
+                Debug.WriteLine(
+                    $"Processed Face : {face != null}");
+            }
+        }
+    }
+
+
 }
