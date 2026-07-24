@@ -7,7 +7,7 @@ namespace LongTool;
 public class App : IExternalApplication
 {
 
-    //Long
+    //Long version 01
     public Result OnStartup(UIControlledApplication application)
     {
         try
