@@ -21,17 +21,25 @@ public class RibbonBuilder
             // Tạo Tab
             _application.CreateRibbonTab(RibbonConstants.TabName);
 
-            // Tạo Panel 1: Công cụ cơ bản
+            // Tạo Panel : Công cụ kiểm tra cơ bản
+            var TestPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.TestPanel);
+            new Panels.TestPanel().Build(TestPanel, _assemblyPath);
+
+            // Tạo Panel : Công cụ cơ bản
             var basicPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.BasicToolsPanel);
             new Panels.BasicToolsPanel().Build(basicPanel, _assemblyPath);
 
-            // Tạo Panel 2: Công cụ nâng cao
+            // Tạo Panel : Công cụ nâng cao
             //var advancedPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.AdvancedToolsPanel);
             //new Panels.AdvancedToolsPanel().Build(advancedPanel, _assemblyPath);
 
-            // Panel 3: Công cụ tạo mới (THÊM MỚI)
+            // Panel : Công cụ tạo mới
             var createPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.LongToolsPanel);
             new Panels.CreateToolsPanel().Build(createPanel, _assemblyPath);
+
+            // Panel : Công cụ Management (THÊM MỚI)
+            var managementPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.ManagementPanel);
+            new Panels.ManagementPanel().Build(managementPanel, _assemblyPath);
 
         }
         catch (Exception ex)

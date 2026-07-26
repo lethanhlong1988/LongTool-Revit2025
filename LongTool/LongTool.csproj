@@ -36,6 +36,9 @@
 			<Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>
 		</Content>
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Core\Management\LongToolCleaner.cs" />
+	</ItemGroup>
 
 	<!-- Copy file .addin vào output -->
 	<ItemGroup>
@@ -47,6 +50,9 @@
 	  <Folder Include="FinishEngine\Generation\" />
 	  <Folder Include="FinishEngine\Debug\" />
 	  <Folder Include="RoomFinish\Utils\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="Core\Management\LongToolCleaner.cs" />
 	</ItemGroup>
 
 	<!-- Tự động copy .addin vào thư mục Revit Addins -->
