@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using LongTool.RoomFinish.Models;
+using LongTool.Core.Storage;
 
 namespace LongTool.RoomFinish.Renderers;
 
@@ -33,9 +34,12 @@ public class RoomBoundaryRenderer
         {
             foreach (Curve curve in loop)
             {
-                _document.Create.NewDetailCurve(
-                    _view,
-                    curve);
+                DetailCurve detailCurve =
+                    _document.Create.NewDetailCurve(
+                        _view,
+                        curve);
+
+                LongToolMarker.Mark(detailCurve);
             }
         }
     }

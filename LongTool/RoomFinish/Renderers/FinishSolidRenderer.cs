@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 
 using LongTool.RoomFinish.Models;
+using LongTool.Core.Storage;
 
 namespace LongTool.RoomFinish.Renderers;
 
@@ -41,6 +42,8 @@ public class FinishSolidRenderer
                 {
                     solidData.Solid
                 });
+
+            LongToolMarker.Mark(shape);
         }
     }
 }

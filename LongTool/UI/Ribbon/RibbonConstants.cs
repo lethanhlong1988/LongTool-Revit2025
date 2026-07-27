@@ -8,6 +8,7 @@ public static class RibbonConstants
     public const string LongToolsPanel = "Công cụ Long tạo";
     public const string ManagementPanel = "Management";
     public const string TestPanel = "Test";
+    public const string TabelPanel = "Table";
 
     public const string UtilityToolsPanel = "Tiện ích";
 

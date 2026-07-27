@@ -37,9 +37,13 @@ public class RibbonBuilder
             var createPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.LongToolsPanel);
             new Panels.CreateToolsPanel().Build(createPanel, _assemblyPath);
 
-            // Panel : Công cụ Management (THÊM MỚI)
+            // Panel : Công cụ Management
             var managementPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.ManagementPanel);
             new Panels.ManagementPanel().Build(managementPanel, _assemblyPath);
+
+            // Panel : Công cụ Tabel
+            var TabelPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.TabelPanel);
+            new Panels.TabelPanel().Build(TabelPanel, _assemblyPath);
 
         }
         catch (Exception ex)
