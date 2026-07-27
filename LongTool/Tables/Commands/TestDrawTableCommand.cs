@@ -7,10 +7,10 @@ using LongTool.Utils;
 using System;
 using System.Linq;
 
-namespace LongTool.Commands.Table;
+namespace LongTool.Tables.Commands;
 
 [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
-public class DrawTableCommand : CommandBase
+public class TestDrawTableCommand : CommandBase
 {
     public override Result Execute(
         ExternalCommandData commandData,

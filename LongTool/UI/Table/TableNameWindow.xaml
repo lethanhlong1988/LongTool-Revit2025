@@ -1,12 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿<Window x:Class="LongTool.UI.Table.TableNameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create Table"
+        Height="180"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
 
-namespace LongTool.UI.Table
-{
-class TableNameWindow
-{
-}
-}
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Label Table Name -->
+        <TextBlock
+            Text="Table Name"
+            FontSize="14"
+            FontWeight="SemiBold"
+            Margin="0,0,0,8"/>
+
+        <!-- TextBox -->
+        <TextBox
+            x:Name="TableNameTextBox"
+            Grid.Row="1"
+            Height="30"
+            FontSize="13"
+            Padding="5"
+            VerticalContentAlignment="Center"/>
+
+        <!-- Buttons -->
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Margin="0,15,0,0">
+
+            <Button
+                Width="80"
+                Height="32"
+                Content="OK"
+                IsDefault="True"
+                Click="OkButton_Click"
+                Margin="0,0,10,0"/>
+
+            <Button
+                Width="80"
+                Height="32"
+                Content="Cancel"
+                IsCancel="True"
+                Click="CancelButton_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>
