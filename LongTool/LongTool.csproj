@@ -47,6 +47,10 @@
 	  <Folder Include="FinishEngine\Generation\" />
 	  <Folder Include="FinishEngine\Debug\" />
 	  <Folder Include="RoomFinish\Utils\" />
+	  <Folder Include="Tables\Commands\" />
+	  <Folder Include="Tables\Geometry\" />
+	  <Folder Include="Tables\Storage\" />
+	  <Folder Include="Tables\Rendering\" />
 	</ItemGroup>
 
 	<!-- Tự động copy .addin vào thư mục Revit Addins -->

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LongTool.Tables.Engine;
+namespace LongTool.Tables.Models.Styles;
 
 /// <summary>
 /// Định nghĩa kiểu hiển thị đường viền của một ô.

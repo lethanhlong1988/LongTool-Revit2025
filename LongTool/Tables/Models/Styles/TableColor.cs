@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LongTool.Tables.Engine;
+namespace LongTool.Tables.Models.Styles;
 
 /// <summary>
 /// Màu trong TableEngine.

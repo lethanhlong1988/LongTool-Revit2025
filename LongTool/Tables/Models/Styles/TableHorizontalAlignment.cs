@@ -1,4 +1,4 @@
-﻿namespace LongTool.Tables.Engine;
+﻿namespace LongTool.Tables.Models.Styles;
 
 /// <summary>
 /// Căn ngang nội dung của ô.

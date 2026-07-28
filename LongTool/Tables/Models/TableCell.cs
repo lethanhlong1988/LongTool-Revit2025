@@ -1,4 +1,4 @@
-﻿using LongTool.Tables.Engine;
+﻿using LongTool.Tables.Models.Styles;
 using System;
 
 namespace LongTool.Tables.Models;

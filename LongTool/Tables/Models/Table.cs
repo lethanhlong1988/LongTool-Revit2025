@@ -1,12 +1,12 @@
-﻿using LongTool.Tables.Engine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace LongTool.Tables.Models;
 
 /// <summary>
 /// Đại diện cho một bảng dữ liệu.
-/// Không chứa logic tính toán hình học.
+/// Chỉ chứa dữ liệu và kiểm tra tính hợp lệ.
+/// Không chứa logic tính toán hay render.
 /// </summary>
 public sealed class Table
 {
@@ -76,6 +76,7 @@ public sealed class Table
 
 
 
+
     #endregion
 
 
@@ -124,41 +125,13 @@ public sealed class Table
 
 
 
-    #region Layout
-
-
-
-    /// <summary>
-    /// Tạo layout từ cấu trúc hiện tại.
-    /// </summary>
-    public TableLayout CreateLayout()
-    {
-        Validate();
-
-
-        var layout =
-            new TableLayout(this);
-
-
-        layout.Build();
-
-
-        return layout;
-    }
-
-
-
-    #endregion
-
-
-
-
-
-
     #region Validation
 
 
 
+    /// <summary>
+    /// Kiểm tra tính hợp lệ của bảng.
+    /// </summary>
     public void Validate()
     {
         if (RowCount == 0)
@@ -166,59 +139,22 @@ public sealed class Table
                 "Table không có Row.");
 
 
-
         if (ColumnCount == 0)
             throw new InvalidOperationException(
                 "Table không có Column.");
 
 
-
         foreach (var row in _rows)
         {
-            ValidateRow(row);
+            row.Validate(ColumnCount);
         }
     }
-
-
-
-
-
-    private void ValidateRow(
-        TableRow row)
-    {
-        int usedColumns = 0;
-
-
-
-        foreach (var cell in row)
-        {
-            cell.Validate();
-
-
-            usedColumns += cell.ColSpan;
-        }
-
-
-
-        if (usedColumns > ColumnCount)
-        {
-            throw new InvalidOperationException(
-                $"Row vượt quá ColumnCount. " +
-                $"Đang dùng {usedColumns}/{ColumnCount}.");
-        }
-    }
-
-
 
     #endregion
 
 
-
-
-
     public override string ToString()
     {
-        return
-            $"Table Rows:{RowCount}, Columns:{ColumnCount}";
+        return $"Table Rows:{RowCount}, Columns:{ColumnCount}";
     }
 }
