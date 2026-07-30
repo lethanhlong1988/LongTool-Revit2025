@@ -51,22 +51,26 @@ public sealed class RevitRenderContext
     #region Coordinate Conversion
 
     /// <summary>
-    /// Chuyển TablePoint (mm) sang tọa độ Revit (feet).
-    /// Đảo chiều Y vì TableEngine tính từ trên xuống,
-    /// còn Revit tăng Y theo hướng lên.
+    /// Chuyển TablePoint (mm) sang Revit tọa độ (feet).
+    /// Lưu ý: TableEngine tính Y từ trên xuống, Revit tính Y từ dưới lên.
     /// </summary>
     public XYZ ToXYZ(TablePoint point)
     {
-        if (point == null)
-            throw new ArgumentNullException(nameof(point));
+        // Tính tổng chiều cao bảng nếu có
+        // Hoặc giả định origin là bottom-left
 
+        // Nếu Origin là bottom-left của bảng:
+        // Revit Y = Origin.Y + point.Y * MmToFeet  (không đảo)
 
+        // Nếu Origin là top-left của bảng:
+        // Revit Y = Origin.Y - point.Y * MmToFeet  (đảo)
+
+        // Với bảng của bạn, dùng bottom-left:
         return new XYZ(
             Origin.X + point.X * MmToFeet,
-            Origin.Y - point.Y * MmToFeet,
+            Origin.Y + point.Y * MmToFeet,  // ✅ Không đảo Y
             Origin.Z);
     }
-
     /// <summary>
     /// Chuyển tọa độ Revit (feet) sang TablePoint (mm).
     /// </summary>
