@@ -4,6 +4,7 @@ using LongTool.Tables.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using LongTool.Tables.Models.Styles;
 
 namespace LongTool.Tables.Layout;
 
@@ -200,63 +201,93 @@ public sealed class TableLayout
     {
         _borderLines.Clear();
 
-        var uniqueLines = new HashSet<TableLine>(new TableLineEqualityComparer());
+        var uniqueLines =
+            new HashSet<TableLine>(
+                new TableLineEqualityComparer());
+
 
         for (int r = 0; r < Table.RowCount; r++)
         {
             for (int c = 0; c < Table.ColumnCount; c++)
             {
                 var cellLayout = _matrix[r, c];
-                if (cellLayout == null) continue;
+
+                if (cellLayout == null)
+                    continue;
+
 
                 var cell = cellLayout.Cell;
-                var style = cell.Style.Borders;
 
-                // Chỉ xử lý nếu đây là cell "chủ" (gốc) của merged area
-                if (cellLayout.RowIndex == r && cellLayout.ColumnIndex == c)
+
+                TableCellStyle style =
+                    cell.Style ??
+                    Table.DefaultStyle.CellStyle;
+
+
+
+                // Chỉ xử lý cell gốc của merged cell
+                if (cellLayout.RowIndex != r ||
+                    cellLayout.ColumnIndex != c)
+                    continue;
+
+
+
+                // TOP
+                if (style.Borders.Top &&
+                    IsTopEdge(r, c))
                 {
-                    // TOP
-                    if (style.Top && IsTopEdge(r, c))
-                    {
-                        AddBorderLine(uniqueLines,
-                            cellLayout.TopLeft,
-                            cellLayout.TopRight,
-                            style.LineWidth);
-                    }
+                    AddBorderLine(
+                        uniqueLines,
+                        cellLayout.TopLeft,
+                        cellLayout.TopRight,
+                        style.Borders.LineWidth);
+                }
 
-                    // BOTTOM
-                    if (style.Bottom && IsBottomEdge(r, c))
-                    {
-                        AddBorderLine(uniqueLines,
-                            cellLayout.BottomLeft,
-                            cellLayout.BottomRight,
-                            style.LineWidth);
-                    }
 
-                    // LEFT
-                    if (style.Left && IsLeftEdge(r, c))
-                    {
-                        AddBorderLine(uniqueLines,
-                            cellLayout.TopLeft,
-                            cellLayout.BottomLeft,
-                            style.LineWidth);
-                    }
 
-                    // RIGHT
-                    if (style.Right && IsRightEdge(r, c))
-                    {
-                        AddBorderLine(uniqueLines,
-                            cellLayout.TopRight,
-                            cellLayout.BottomRight,
-                            style.LineWidth);
-                    }
+                // BOTTOM
+                if (style.Borders.Bottom &&
+                    IsBottomEdge(r, c))
+                {
+                    AddBorderLine(
+                        uniqueLines,
+                        cellLayout.BottomLeft,
+                        cellLayout.BottomRight,
+                        style.Borders.LineWidth);
+                }
+
+
+
+                // LEFT
+                if (style.Borders.Left &&
+                    IsLeftEdge(r, c))
+                {
+                    AddBorderLine(
+                        uniqueLines,
+                        cellLayout.TopLeft,
+                        cellLayout.BottomLeft,
+                        style.Borders.LineWidth);
+                }
+
+
+
+                // RIGHT
+                if (style.Borders.Right &&
+                    IsRightEdge(r, c))
+                {
+                    AddBorderLine(
+                        uniqueLines,
+                        cellLayout.TopRight,
+                        cellLayout.BottomRight,
+                        style.Borders.LineWidth);
                 }
             }
         }
 
+
+
         _borderLines.AddRange(
             TableLineMerger.Merge(uniqueLines));
-
     }
 
     // Helper methods để kiểm tra cạnh của merged area

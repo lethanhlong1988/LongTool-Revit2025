@@ -17,9 +17,9 @@ public static class DoorScheduleBuilder
             TableVerticalAlignment.Middle;
 
         // 3 Columns với kích thước khác nhau
-        table.AddColumn(2000);
-        table.AddColumn(1000);
-        table.AddColumn(4000);
+        table.AddColumn(20);
+        table.AddColumn(10);
+        table.AddColumn(40);
 
 
         // 7 Rows
@@ -27,15 +27,15 @@ public static class DoorScheduleBuilder
         {
             if (i == 2)
             {
-                table.AddRow(4000);
+                table.AddRow(40);
             }
             else if (i == 0)
             {
-                table.AddRow(1000);
+                table.AddRow(10);
             }
             else
             {
-                table.AddRow(500);
+                table.AddRow(5);
             }
         }
 

@@ -70,7 +70,7 @@ public class TestTableRenderCommand : IExternalCommand
                     $"{cell.Cell.Name} | " +
                     $"Text:{cell.Cell.Text} | " +
                     $"Row:{cell.RowIndex} Col:{cell.ColumnIndex} | " +
-                    $"X:{cell.Origin.X} Y:{cell.Origin.Y} | " +
+                   $"Left:{cell.Left} Bottom:{cell.Bottom} | " +
                     $"W:{cell.Width} H:{cell.Height}");
             }
 
@@ -93,14 +93,26 @@ public class TestTableRenderCommand : IExternalCommand
                     XYZ.Zero);
 
             using (Transaction trans =
-                   new Transaction(doc, "Test Render Table"))
+                    new Transaction(doc, "Test Render Table"))
             {
                 trans.Start();
+
 
                 BorderRenderer renderer =
                     new BorderRenderer(context);
 
                 renderer.Render(layout);
+
+
+
+                TableTextRenderer textRenderer =
+                    new TableTextRenderer(
+                        doc,
+                        doc.ActiveView);
+
+                textRenderer.Render(layout);
+
+
 
                 trans.Commit();
             }
