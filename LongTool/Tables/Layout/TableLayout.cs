@@ -1,7 +1,9 @@
-﻿using LongTool.Tables.Geometry;
+﻿using Autodesk.Revit.UI;
+using LongTool.Tables.Geometry;
 using LongTool.Tables.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LongTool.Tables.Layout;
 
@@ -252,7 +254,9 @@ public sealed class TableLayout
             }
         }
 
-        _borderLines.AddRange(uniqueLines);
+        _borderLines.AddRange(
+            TableLineMerger.Merge(uniqueLines));
+
     }
 
     // Helper methods để kiểm tra cạnh của merged area
@@ -327,6 +331,8 @@ public sealed class TableLayout
     private void AddBorderLine(HashSet<TableLine> lines, TablePoint start, TablePoint end, double lineWidth)
     {
         var line = new TableLine(start, end, lineWidth);
+        Debug.WriteLine(
+            $"ADD LINE: {line}");
         lines.Add(line);
     }
 

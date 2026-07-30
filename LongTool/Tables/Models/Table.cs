@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using LongTool.Tables.Models.Styles;
 
 namespace LongTool.Tables.Models;
 
 /// <summary>
 /// Đại diện cho một bảng dữ liệu.
 /// Chỉ chứa dữ liệu và kiểm tra tính hợp lệ.
-/// Không chứa logic tính toán hay render.
+/// Không chứa logic render.
 /// </summary>
 public sealed class Table
 {
+    public TableDefaultStyle DefaultStyle { get; } =
+    new TableDefaultStyle();
+
     private readonly List<TableRow> _rows;
 
     private readonly List<TableColumn> _columns;
@@ -48,12 +52,12 @@ public sealed class Table
 
 
 
+
     #region Column Management
 
 
 
-    public void AddColumn(
-        double width)
+    public void AddColumn(double width)
     {
         if (width <= 0)
             throw new ArgumentException(
@@ -76,7 +80,6 @@ public sealed class Table
 
 
 
-
     #endregion
 
 
@@ -88,8 +91,7 @@ public sealed class Table
 
 
 
-    public TableRow AddRow(
-        double height = 1)
+    public TableRow AddRow(double height = 1)
     {
         if (height <= 0)
             throw new ArgumentException(
@@ -114,6 +116,43 @@ public sealed class Table
     public void ClearRows()
     {
         _rows.Clear();
+    }
+
+
+
+    #endregion
+
+
+
+
+
+
+    #region Cell Search
+
+
+
+    /// <summary>
+    /// Tìm Cell theo Name.
+    /// </summary>
+    public TableCell GetCell(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return null;
+
+
+        foreach (var row in _rows)
+        {
+            foreach (var cell in row)
+            {
+                if (cell.Name == name)
+                {
+                    return cell;
+                }
+            }
+        }
+
+
+        return null;
     }
 
 
@@ -150,7 +189,13 @@ public sealed class Table
         }
     }
 
+
+
     #endregion
+
+
+
+
 
 
     public override string ToString()

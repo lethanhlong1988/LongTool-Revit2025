@@ -173,25 +173,57 @@ public class ButtonBuilder
     }
 
     // Pulldown Button
-    public PulldownButton CreatePulldownButton(RibbonPanel panel, string id, string text,
-        List<(string id, string text, string commandPath, string tooltip)> items,
-        string tooltip = null)
+    public PulldownButton CreatePulldownButton(
+    RibbonPanel panel,
+    string id,
+    string text,
+    List<(
+        string id,
+        string text,
+        string commandPath,
+        string tooltip,
+        string largeIcon,
+        string smallIcon)> items,
+    string tooltip = null)
     {
         var data = new PulldownButtonData(id, text);
+
         if (!string.IsNullOrEmpty(tooltip))
             data.ToolTip = tooltip;
 
         var pullButton = panel.AddItem(data) as PulldownButton;
+
         if (pullButton != null)
         {
             foreach (var item in items)
             {
-                var itemData = new PushButtonData(item.id, item.text, _assemblyPath, item.commandPath);
+                var itemData = new PushButtonData(
+                    item.id,
+                    item.text,
+                    _assemblyPath,
+                    item.commandPath);
+
                 if (!string.IsNullOrEmpty(item.tooltip))
                     itemData.ToolTip = item.tooltip;
+
+                if (!string.IsNullOrEmpty(item.largeIcon))
+                {
+                    var largeImage = LoadImage(item.largeIcon, 32);
+                    if (largeImage != null)
+                        itemData.LargeImage = largeImage;
+                }
+
+                if (!string.IsNullOrEmpty(item.smallIcon))
+                {
+                    var smallImage = LoadImage(item.smallIcon, 16);
+                    if (smallImage != null)
+                        itemData.Image = smallImage;
+                }
+
                 pullButton.AddPushButton(itemData);
             }
         }
+
         return pullButton;
     }
 }

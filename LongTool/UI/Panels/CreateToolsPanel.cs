@@ -15,16 +15,16 @@ public class CreateToolsPanel
             "btnNut01", "Nut 01",
             "LongTool.Commands.Long.FinishEngineTestCommand",
             "Nhấn vào nút 01",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/30-32.png",
+            $"{iconPath}Small/30-16.png");
 
         // Nút 02 - SỬA COMMAND
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnRoomFinish", "RoomFinish",
             "LongTool.RoomFinish.Commands.RoomFinishCommand",  
             "Lệnh thống kê Rooms",
-            $"{iconPath}Large/Nut02.png",
-            $"{iconPath}Small/Nut02.png");
+            $"{iconPath}Large/31-32.png",
+            $"{iconPath}Small/31-16.png");
 
         panel.AddSeparator();
 
@@ -32,10 +32,10 @@ public class CreateToolsPanel
         buttonBuilder.AddTwoStackedButtonsToPanel(panel,
             ("btnDoor", "Cửa", "LongTool.Commands.Basic.CommandCreateDoor",
                 "Tạo cửa",
-                $"{iconPath}Large/door.png", $"{iconPath}Small/door.png"),
+                $"{iconPath}Large/32-32.png", $"{iconPath}Small/32-16.png"),
             ("btnWindow", "Cửa sổ", "LongTool.Commands.Basic.CommandCreateWindow",
                 "Tạo cửa sổ",
-                $"{iconPath}Large/window.png", $"{iconPath}Small/window.png")
+                $"{iconPath}Large/33-32.png", $"{iconPath}Small/33-16.png")
         );
     }
 }

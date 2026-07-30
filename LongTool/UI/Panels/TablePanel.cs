@@ -14,18 +14,18 @@ public class TabelPanel
         // Tabel Panel
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnTableDraw", "Table Draw",
-            "LongTool.Tables.Commands.TestDrawTableCommand",
+            "LongTool.Commands.TableCommand.DrawTableCommand",
             "Nhấn vào Lệnh vẽ bảng",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/30-32.png",
+            $"{iconPath}Small/30-16.png");
 
         // Tabel Draw Button
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnTableDraw02", "Table Draw02",
-            "LongTool.Tables.Commands.TableRenderCommand",
+            "LongTool.Commands.TableCommand.TestTableRenderCommand",
             "Nhấn vào Lệnh vẽ bảng",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/31-32.png",
+            $"{iconPath}Small/31-16.png");
 
     }
 }

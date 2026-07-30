@@ -16,31 +16,31 @@ public class ManagementPanel
             "btnCreate", "Create",
             "LongTool.Commands.Management.TestLongToolMarkerCommand",
             "Nhấn vào nút 01",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/29-32.png",
+            $"{iconPath}Small/29-16.png");
 
         // Management Panel Button LongTool Cleaner Command
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnClear", "Cleaner",
             "LongTool.Commands.Management.ClearLongToolObjectsCommand",
             "Nhấn vào nút 02",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/26-32.png",
+            $"{iconPath}Small/26-16.png");
 
         // Management Panel Button LongTool Find Command
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnFind", "Find",
             "LongTool.Commands.Management.TestLongToolCollectorCommand",
             "Nhấn vào nút 02",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/27-32.png",
+            $"{iconPath}Small/27-16.png");
 
         // Management Panel Button LongTool Select Command
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnSelect", "Select",
             "LongTool.Commands.Management.SelectLongToolObjectsCommand",
             "Nhấn vào nút 03",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            $"{iconPath}Large/28-32.png",
+            $"{iconPath}Small/28-16.png");
     }
 }

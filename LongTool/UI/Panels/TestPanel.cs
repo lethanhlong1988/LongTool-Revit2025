@@ -11,13 +11,13 @@ public class TestPanel
         var buttonBuilder = new Buttons.ButtonBuilder(assemblyPath);
         string iconPath = "Resources/Icons/";
 
-        // Management Panel Button TestLongToolElementCollectionCommand
+        // Management Panel Button Test
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnManagement02", "Nut Test",
-            "LongTool.Commands.Management.TestLongToolCollectorCommand",
-            "Nhấn vào nút 02",
-            $"{iconPath}Large/Nut01.png",
-            $"{iconPath}Small/Nut01.png");
+            "btnTest", "Nut Test",
+            "LongTool.Commands.TableCommand.TestTableRenderCommand",
+            "Nhấn vào nút Test",
+            $"{iconPath}Large/26-32.png",
+            $"{iconPath}Small/26-16.png");
 
     }
 }

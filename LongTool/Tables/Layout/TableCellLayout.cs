@@ -1,5 +1,7 @@
 ﻿using LongTool.Tables.Geometry;
 using LongTool.Tables.Models;
+using LongTool.Tables.Models.Styles;
+using LongTool.Tables.Services;
 using System;
 
 namespace LongTool.Tables.Layout;
@@ -15,6 +17,12 @@ public sealed class TableCellLayout
     public TableLayout Layout { get; }
 
     public TableCell Cell { get; }
+
+    /// <summary>
+    /// Style thực tế được sử dụng khi render.
+    /// Đã resolve từ Cell.Style hoặc Table.DefaultStyle.
+    /// </summary>
+    public TableCellStyle Style { get; internal set; }
 
     public int RowIndex { get; }
 
@@ -166,6 +174,11 @@ public sealed class TableCellLayout
         ColumnIndex = columnIndex;
 
         Origin = new TablePoint();
+
+        Style =
+            TableStyleResolver.Resolve(
+                layout.Table,
+                cell);
     }
 
 

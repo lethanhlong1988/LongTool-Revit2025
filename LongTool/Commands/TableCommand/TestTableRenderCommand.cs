@@ -1,0 +1,130 @@
+﻿using Autodesk.Revit.Attributes;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using LongTool.Tables.Builders;
+using LongTool.Tables.Data;
+using LongTool.Tables.Diagnostics;
+using LongTool.Tables.Layout;
+using LongTool.Tables.Revit;
+using LongTool.Tables.Renderers;
+using LongTool.Tables.Rendering;
+using LongTool.Tables.Services;
+using LongTool.Tables.Models;
+using System;
+using System.Diagnostics;
+
+namespace LongTool.Commands.TableCommand;
+
+[Transaction(TransactionMode.Manual)]
+public class TestTableRenderCommand : IExternalCommand
+{
+    public Result Execute(
+        ExternalCommandData commandData,
+        ref string message,
+        ElementSet elements)
+    {
+        try
+        {
+            UIDocument uidoc = commandData.Application.ActiveUIDocument;
+            Document doc = uidoc.Document;
+
+            //--------------------------------------------------
+            // 1. Tạo dữ liệu Door
+            //--------------------------------------------------
+
+            DoorData door = new DoorData
+            {
+                Mark = "D-001",
+                Family = "Single Flush",
+                Width = "900",
+                Height = "2100",
+                Material = "Steel"
+            };
+
+            //--------------------------------------------------
+            // 2. Tạo Table
+            //--------------------------------------------------
+
+            Table table = DoorScheduleBuilder.CreateMergeTestTable();
+
+            DoorScheduleService.Fill(table, door);
+
+            TableDebugger.Show(table);
+
+            //--------------------------------------------------
+            // 3. Build Layout
+            //--------------------------------------------------
+
+            TableLayout layout = new TableLayout(table);
+
+            layout.Build();
+
+            LayoutDebugger.Show(
+                layout.Cells);
+
+            Debug.WriteLine("========== TABLE LAYOUT ==========");
+
+            foreach (var cell in layout.Cells)
+            {
+                Debug.WriteLine(
+                    $"{cell.Cell.Name} | " +
+                    $"Text:{cell.Cell.Text} | " +
+                    $"Row:{cell.RowIndex} Col:{cell.ColumnIndex} | " +
+                    $"X:{cell.Origin.X} Y:{cell.Origin.Y} | " +
+                    $"W:{cell.Width} H:{cell.Height}");
+            }
+
+            Debug.WriteLine("==================================");
+
+            //--------------------------------------------------
+            // 4. Render Debug
+            //--------------------------------------------------
+
+            DoorScheduleRenderer.Render(table);
+
+            //--------------------------------------------------
+            // 5. Render Revit
+            //--------------------------------------------------
+
+            RevitRenderContext context =
+                new RevitRenderContext(
+                    doc,
+                    doc.ActiveView,
+                    XYZ.Zero);
+
+            using (Transaction trans =
+                   new Transaction(doc, "Test Render Table"))
+            {
+                trans.Start();
+
+                BorderRenderer renderer =
+                    new BorderRenderer(context);
+
+                renderer.Render(layout);
+
+                trans.Commit();
+            }
+
+            //--------------------------------------------------
+            // 6. Kết quả
+            //--------------------------------------------------
+
+            TaskDialog.Show(
+                "Test Table",
+                $"Cells : {layout.Cells.Count}\n" +
+                $"Lines : {layout.BorderLines.Count}");
+
+            return Result.Succeeded;
+        }
+        catch (Exception ex)
+        {
+            message = ex.ToString();
+
+            TaskDialog.Show(
+                "Test Table Error",
+                ex.ToString());
+
+            return Result.Failed;
+        }
+    }
+}

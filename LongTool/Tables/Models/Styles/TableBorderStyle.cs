@@ -26,7 +26,7 @@ public sealed class TableBorderStyle :
 
     /// <summary>
     /// Chiều rộng đường viền.
-    /// Đơn vị: Feet (Revit Internal Unit).
+    /// Đơn vị: mm.
     /// </summary>
     public double LineWidth { get; set; } = 1.0;
 

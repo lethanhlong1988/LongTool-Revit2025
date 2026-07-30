@@ -16,12 +16,15 @@ public sealed class TableCell
     /// </summary>
     public string Id { get; internal set; }
 
+
     /// <summary>
-    /// Tên tham chiếu của ô (do người dùng đặt).
+    /// Tên tham chiếu của ô.
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     #endregion
+
+
 
     #region Span
 
@@ -30,12 +33,15 @@ public sealed class TableCell
     /// </summary>
     public int ColSpan { get; set; } = 1;
 
+
     /// <summary>
     /// Số hàng mà cell chiếm.
     /// </summary>
     public int RowSpan { get; set; } = 1;
 
     #endregion
+
+
 
     #region Content
 
@@ -46,68 +52,104 @@ public sealed class TableCell
 
     #endregion
 
+
+
     #region Style
 
     /// <summary>
-    /// Kiểu hiển thị của cell.
+    /// Kiểu hiển thị riêng của cell.
+    /// Mỗi cell sở hữu một Style độc lập.
     /// </summary>
-    public TableCellStyle Style { get; } = new TableCellStyle();
+    public TableCellStyle Style { get; } =
+        new TableCellStyle();
+
+
+    /// <summary>
+    /// Kiểm tra cell có Style hay không.
+    /// Giữ lại để tương thích với các module cũ.
+    /// </summary>
+    public bool HasStyle =>
+        Style != null;
 
     #endregion
 
-    #region Cross Line (Gạch chéo)
+
+
+    #region Cross Line
 
     /// <summary>
     /// Có vẽ đường gạch chéo trong ô không.
     /// </summary>
     public bool HasCrossLine { get; set; } = false;
 
+
     /// <summary>
     /// Hướng của đường gạch chéo.
     /// </summary>
-    public CrossLineDirection CrossDirection { get; set; } = CrossLineDirection.TopLeftToBottomRight;
+    public CrossLineDirection CrossDirection { get; set; }
+        = CrossLineDirection.TopLeftToBottomRight;
 
     #endregion
+
+
 
     #region Constructor
 
     public TableCell()
     {
-        Id = Guid.NewGuid().ToString("N").Substring(0, 8);
+        Id =
+            Guid.NewGuid()
+            .ToString("N")
+            .Substring(0, 8);
     }
+
 
     public TableCell(string text) : this()
     {
-        Text = text ?? string.Empty;
+        Text =
+            text ?? string.Empty;
     }
 
     #endregion
 
+
+
     #region Validation
 
-    /// <summary>
-    /// Kiểm tra dữ liệu của cell.
-    /// </summary>
     public void Validate()
     {
         if (ColSpan <= 0)
         {
-            throw new InvalidOperationException("ColSpan phải lớn hơn 0.");
+            throw new InvalidOperationException(
+                "ColSpan phải lớn hơn 0.");
         }
+
 
         if (RowSpan <= 0)
         {
-            throw new InvalidOperationException("RowSpan phải lớn hơn 0.");
+            throw new InvalidOperationException(
+                "RowSpan phải lớn hơn 0.");
         }
+
+
+        Style.Validate();
     }
 
     #endregion
 
+
+
     public override string ToString()
     {
-        return $"Cell [{Id}] Name:'{Name}' Span({RowSpan},{ColSpan}) Text:\"{Text}\"";
+        return
+            $"Cell [{Id}] " +
+            $"Name:'{Name}' " +
+            $"Span({RowSpan},{ColSpan}) " +
+            $"Text:\"{Text}\"";
     }
 }
+
+
 
 /// <summary>
 /// Hướng của đường gạch chéo.
@@ -119,10 +161,12 @@ public enum CrossLineDirection
     /// </summary>
     TopLeftToBottomRight,
 
+
     /// <summary>
     /// Từ trên phải xuống dưới trái (/)
     /// </summary>
     TopRightToBottomLeft,
+
 
     /// <summary>
     /// Từ dưới trái lên trên phải (/)
