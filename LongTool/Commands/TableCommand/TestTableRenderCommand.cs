@@ -10,6 +10,7 @@ using LongTool.Tables.Renderers;
 using LongTool.Tables.Rendering;
 using LongTool.Tables.Services;
 using LongTool.Tables.Models;
+using LongTool.Core.Selection;
 using System;
 using System.Diagnostics;
 
@@ -27,6 +28,22 @@ public class TestTableRenderCommand : IExternalCommand
         {
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
             Document doc = uidoc.Document;
+
+            // 1. Pick Origin
+            PickPointResult? pick =
+                PointPicker.PickPoint(
+                    uidoc,
+                    "Chọn góc trái dưới của bảng");
+
+
+            if (pick == null)
+            {
+                return Result.Cancelled;
+            }
+
+
+            XYZ origin =
+                pick.Point;
 
             //--------------------------------------------------
             // 1. Tạo dữ liệu Door
@@ -90,7 +107,7 @@ public class TestTableRenderCommand : IExternalCommand
                 new RevitRenderContext(
                     doc,
                     doc.ActiveView,
-                    XYZ.Zero);
+                    origin);
 
             using (Transaction trans =
                     new Transaction(doc, "Test Render Table"))
@@ -103,12 +120,20 @@ public class TestTableRenderCommand : IExternalCommand
 
                 renderer.Render(layout);
 
+                //CellCenterDebugRenderer centerRenderer =
+                //    new CellCenterDebugRenderer(
+                //        context);
+
+
+                //centerRenderer.Render(layout);
+
 
 
                 TableTextRenderer textRenderer =
                     new TableTextRenderer(
                         doc,
-                        doc.ActiveView);
+                        doc.ActiveView,
+                        context);
 
                 textRenderer.Render(layout);
 

@@ -120,6 +120,66 @@ public sealed class TableCellLayout
     public TablePoint Center =>
         new(CenterX, CenterY);
 
+    /// <summary>
+    /// Điểm neo mặc định để đặt nội dung trong Cell.
+    /// Hiện tại là tâm Cell.
+    /// Sau này sẽ hỗ trợ Alignment và Padding.
+    /// </summary>
+    /// <summary>
+    /// Điểm neo để đặt nội dung trong Cell.
+    /// Tự tính theo Alignment và Padding.
+    /// </summary>
+    public TablePoint TextAnchor
+    {
+        get
+        {
+            double x = CenterX;
+            double y = CenterY;
+
+
+            switch (Style.HorizontalAlignment)
+            {
+                case TableHorizontalAlignment.Left:
+                    x = Left + Style.PaddingLeft;
+                    break;
+
+
+                case TableHorizontalAlignment.Right:
+                    x = Right - Style.PaddingRight;
+                    break;
+
+
+                case TableHorizontalAlignment.Center:
+                default:
+                    x = CenterX;
+                    break;
+            }
+
+
+
+            switch (Style.VerticalAlignment)
+            {
+                case TableVerticalAlignment.Top:
+                    y = Top - Style.PaddingTop;
+                    break;
+
+
+                case TableVerticalAlignment.Bottom:
+                    y = Bottom + Style.PaddingBottom;
+                    break;
+
+
+                case TableVerticalAlignment.Middle:
+                default:
+                    y = CenterY;
+                    break;
+            }
+
+
+            return new TablePoint(x, y);
+        }
+    }
+
 
 
     #endregion

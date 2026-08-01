@@ -174,12 +174,27 @@ public sealed class TableLayout
 
     private void BuildRowCoordinates()
     {
-        double y = 0;
+        double totalHeight = 0;
 
+
+        // Tổng chiều cao toàn bộ bảng
         for (int i = 0; i < Table.RowCount; i++)
         {
+            totalHeight += Table.Rows[i].Height;
+        }
+
+
+
+        double y = totalHeight;
+
+
+        // Row 0 là hàng trên cùng
+        // Nhưng tọa độ Revit có gốc ở góc trái dưới
+        for (int i = 0; i < Table.RowCount; i++)
+        {
+            y -= Table.Rows[i].Height;
+
             _rowY[i] = y;
-            y += Table.Rows[i].Height;
         }
     }
 

@@ -56,21 +56,12 @@ public sealed class RevitRenderContext
     /// </summary>
     public XYZ ToXYZ(TablePoint point)
     {
-        // Tính tổng chiều cao bảng nếu có
-        // Hoặc giả định origin là bottom-left
-
-        // Nếu Origin là bottom-left của bảng:
-        // Revit Y = Origin.Y + point.Y * MmToFeet  (không đảo)
-
-        // Nếu Origin là top-left của bảng:
-        // Revit Y = Origin.Y - point.Y * MmToFeet  (đảo)
-
-        // Với bảng của bạn, dùng bottom-left:
         return new XYZ(
             Origin.X + point.X * MmToFeet,
-            Origin.Y + point.Y * MmToFeet,  // ✅ Không đảo Y
+            Origin.Y + point.Y * MmToFeet,
             Origin.Z);
     }
+    
     /// <summary>
     /// Chuyển tọa độ Revit (feet) sang TablePoint (mm).
     /// </summary>
@@ -82,7 +73,7 @@ public sealed class RevitRenderContext
 
         return new TablePoint(
             (point.X - Origin.X) * FeetToMm,
-            (Origin.Y - point.Y) * FeetToMm);
+            (point.Y - Origin.Y) * FeetToMm);
     }
 
     #endregion

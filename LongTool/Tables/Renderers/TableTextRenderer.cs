@@ -1,7 +1,8 @@
 ﻿using Autodesk.Revit.DB;
 using LongTool.Tables.Geometry;
 using LongTool.Tables.Layout;
-using LongTool.Tables.Revit;  // ✅ Thêm using này
+using LongTool.Tables.Revit;  
+using LongTool.Tables.Services;
 using System;
 using System.Diagnostics;
 
@@ -11,11 +12,12 @@ public class TableTextRenderer
 {
     private readonly Document _doc;
     private readonly View _view;
-    private readonly RevitRenderContext _context;  // ✅ Thêm context
+    private readonly RevitRenderContext _context;  
     private ElementId _textTypeId;
+    private readonly TextMetricsService _textMetrics;
 
     private const double MmToFeet = 1.0 / 304.8;
-    private const double TextHeightMm = 3.5;
+    private const double TextHeightMm = 5;
 
     // ✅ Sửa constructor để nhận context
     public TableTextRenderer(Document doc, View view, RevitRenderContext context)
@@ -25,6 +27,10 @@ public class TableTextRenderer
         _context = context ?? throw new ArgumentNullException(nameof(context));
 
         _textTypeId = FindTextType();
+
+        _textMetrics =
+            new TextMetricsService(_doc);
+
         SetupTextType();
     }
 
@@ -40,42 +46,55 @@ public class TableTextRenderer
         Debug.WriteLine("===== TEXT RENDERER END =====");
     }
 
-    private void RenderCell(TableCellLayout cellLayout)
+    private void RenderCell(
+    TableCellLayout cellLayout)
     {
-        string text = cellLayout.Cell.Text;
-        if (string.IsNullOrWhiteSpace(text)) return;
-
-        Debug.WriteLine($"TEXT: {cellLayout.Cell.Name} -> {text}");
+        const string text = "ABC";
 
         try
         {
-            // ✅ Dùng ToXYZ của context để chuyển đổi đúng
-            TablePoint centerPoint = new TablePoint(
-                cellLayout.CenterX,
-                cellLayout.CenterY
-            );
+            XYZ position =
+                _context.ToXYZ(
+                    cellLayout.TextAnchor);
 
-            XYZ position = _context.ToXYZ(centerPoint);
 
-            Debug.WriteLine($"  Table Center: ({cellLayout.CenterX}, {cellLayout.CenterY}) mm");
-            Debug.WriteLine($"  Revit Position: ({position.X}, {position.Y}, {position.Z}) feet");
+            TextNote note =
+                TextNote.Create(
+                    _doc,
+                    _view.Id,
+                    position,
+                    text,
+                    _textTypeId);
 
-            TextNote note = TextNote.Create(
-                _doc,
-                _view.Id,
-                position,
-                text,
-                _textTypeId);
 
-            if (note != null)
+            if (note == null)
+                return;
+
+
+            note.HorizontalAlignment =
+                HorizontalTextAlignment.Center;
+
+
+            double offset =
+                _textMetrics.GetVerticalOffset(
+                    note,
+                    _view);
+
+
+            if (Math.Abs(offset) > 1e-9)
             {
-                note.HorizontalAlignment = HorizontalTextAlignment.Center;
-                Debug.WriteLine($"  ✅ Created TextNote: {text}");
+                ElementTransformUtils.MoveElement(
+                    _doc,
+                    note.Id,
+                    new XYZ(
+                        0,
+                        offset,
+                        0));
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"  ❌ Failed to create TextNote: {ex.Message}");
+            Debug.WriteLine(ex);
         }
     }
 
