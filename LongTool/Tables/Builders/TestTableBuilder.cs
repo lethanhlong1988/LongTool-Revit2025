@@ -9,9 +9,9 @@ public static class TestTableBuilder
         Table table = new Table();
 
         // 3 Columns với kích thước khác nhau
-        table.AddColumn(2000);
-        table.AddColumn(1000);
-        table.AddColumn(4000);
+        table.AddColumn(40);
+        table.AddColumn(20);
+        table.AddColumn(80);
 
 
         // 7 Rows
@@ -19,15 +19,15 @@ public static class TestTableBuilder
         {
             if (i == 2)
             {
-                table.AddRow(4000);
+                table.AddRow(80);
             }
             else if (i == 0)
             {
-                table.AddRow(1000);
+                table.AddRow(20);
             }
             else
             {
-                table.AddRow(500);
+                table.AddRow(10);
             }
         }
 

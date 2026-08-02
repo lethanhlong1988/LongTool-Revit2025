@@ -1,7 +1,9 @@
 ﻿using Autodesk.Revit.DB;
+using LongTool.Tables.Diagnostics;
 using LongTool.Tables.Geometry;
 using LongTool.Tables.Layout;
-using LongTool.Tables.Revit;  
+using LongTool.Tables.Models.Styles;
+using LongTool.Tables.Revit;
 using LongTool.Tables.Services;
 using System;
 using System.Diagnostics;
@@ -12,14 +14,14 @@ public class TableTextRenderer
 {
     private readonly Document _doc;
     private readonly View _view;
-    private readonly RevitRenderContext _context;  
-    private ElementId _textTypeId;
-    private readonly TextMetricsService _textMetrics;
+    private readonly RevitRenderContext _context;
+    private readonly ElementId _textTypeId;
+    private readonly DebugMarkerRenderer _debugMarker;
+    private const bool DebugMode = false;
 
     private const double MmToFeet = 1.0 / 304.8;
-    private const double TextHeightMm = 5;
+    private const double TextHeightMm = 2.5;
 
-    // ✅ Sửa constructor để nhận context
     public TableTextRenderer(Document doc, View view, RevitRenderContext context)
     {
         _doc = doc ?? throw new ArgumentNullException(nameof(doc));
@@ -27,75 +29,64 @@ public class TableTextRenderer
         _context = context ?? throw new ArgumentNullException(nameof(context));
 
         _textTypeId = FindTextType();
-
-        _textMetrics =
-            new TextMetricsService(_doc);
+        _debugMarker = new DebugMarkerRenderer(_doc, _view);
 
         SetupTextType();
     }
 
     public void Render(TableLayout layout)
     {
-        Debug.WriteLine("===== TEXT RENDERER START =====");
-
         foreach (var cellLayout in layout.Cells)
         {
             RenderCell(cellLayout);
         }
-
-        Debug.WriteLine("===== TEXT RENDERER END =====");
     }
 
-    private void RenderCell(
-    TableCellLayout cellLayout)
+    private void RenderCell(TableCellLayout cellLayout)
     {
-        const string text = "ABC";
+        string text = cellLayout.Cell.Text;
+
+        if (string.IsNullOrWhiteSpace(text))
+            return;
 
         try
         {
-            XYZ position =
-                _context.ToXYZ(
-                    cellLayout.TextAnchor);
+            XYZ position = _context.ToXYZ(cellLayout.TextAnchor);
 
-
-            TextNote note =
-                TextNote.Create(
-                    _doc,
-                    _view.Id,
-                    position,
-                    text,
-                    _textTypeId);
-
+            TextNote note = TextNote.Create(
+                _doc,
+                _view.Id,
+                position,
+                text,
+                _textTypeId);
 
             if (note == null)
                 return;
 
+            //note.HorizontalAlignment = HorizontalTextAlignment.Center;
+            //note.VerticalAlignment = VerticalTextAlignment.Middle;
 
             note.HorizontalAlignment =
-                HorizontalTextAlignment.Center;
+                ConvertHorizontalAlignment(
+                    cellLayout.Style.HorizontalAlignment);
 
 
-            double offset =
-                _textMetrics.GetVerticalOffset(
-                    note,
-                    _view);
+            note.VerticalAlignment =
+                ConvertVerticalAlignment(
+                    cellLayout.Style.VerticalAlignment);
 
-
-            if (Math.Abs(offset) > 1e-9)
+            if (DebugMode)
             {
-                ElementTransformUtils.MoveElement(
-                    _doc,
-                    note.Id,
-                    new XYZ(
-                        0,
-                        offset,
-                        0));
+                _debugMarker.DrawCross(position, 0.01);
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex);
         }
+
+        
+
     }
 
     private void SetupTextType()
@@ -121,5 +112,45 @@ public class TableTextRenderer
         }
 
         throw new InvalidOperationException("Không tìm thấy TextNoteType.");
+    }
+
+    private HorizontalTextAlignment ConvertHorizontalAlignment(
+    TableHorizontalAlignment alignment)
+    {
+        return alignment switch
+        {
+            TableHorizontalAlignment.Left =>
+                HorizontalTextAlignment.Left,
+
+            TableHorizontalAlignment.Right =>
+                HorizontalTextAlignment.Right,
+
+            TableHorizontalAlignment.Center =>
+                HorizontalTextAlignment.Center,
+
+            _ =>
+                HorizontalTextAlignment.Left
+        };
+    }
+
+
+
+    private VerticalTextAlignment ConvertVerticalAlignment(
+        TableVerticalAlignment alignment)
+    {
+        return alignment switch
+        {
+            TableVerticalAlignment.Top =>
+                VerticalTextAlignment.Top,
+
+            TableVerticalAlignment.Bottom =>
+                VerticalTextAlignment.Bottom,
+
+            TableVerticalAlignment.Middle =>
+                VerticalTextAlignment.Middle,
+
+            _ =>
+                VerticalTextAlignment.Middle
+        };
     }
 }
