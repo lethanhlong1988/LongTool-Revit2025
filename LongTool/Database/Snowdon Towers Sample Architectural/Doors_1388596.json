@@ -1,0 +1,367 @@
+{
+  "Id": 1388596,
+  "Category": "Doors",
+  "Name": "36\u0022 x 84\u0022",
+  "Parameters": [
+    {
+      "Name": "Image",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000023",
+      "Unit": "",
+      "DisplayValue": "-2000023"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000023",
+      "Unit": "",
+      "DisplayValue": "-2000023"
+    },
+    {
+      "Name": "IFC Predefined Type",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC As",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "IfcGUID",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "0mlMV$YD96HATmmaM7Gcvi",
+      "Unit": "",
+      "DisplayValue": "0mlMV$YD96HATmmaM7Gcvi"
+    },
+    {
+      "Name": "Design Option",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Design Option",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "Main Model",
+      "Unit": "",
+      "DisplayValue": "Main Model"
+    },
+    {
+      "Name": "Volume",
+      "DataType": "Volume",
+      "NumericValue": 0.11727299932466255,
+      "TextValue": null,
+      "Unit": "m\u00B3",
+      "DisplayValue": "0.11727299932466255 m\u00B3"
+    },
+    {
+      "Name": "Area",
+      "DataType": "Area",
+      "NumericValue": 4.367128362505158,
+      "TextValue": null,
+      "Unit": "m\u00B2",
+      "DisplayValue": "4.367128362505158 m\u00B2"
+    },
+    {
+      "Name": "Phase Demolished",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Phase Created",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "118390",
+      "Unit": "",
+      "DisplayValue": "118390"
+    },
+    {
+      "Name": "Comments",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Host Id",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "1388593",
+      "Unit": "",
+      "DisplayValue": "1388593"
+    },
+    {
+      "Name": "Level",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "633454",
+      "Unit": "",
+      "DisplayValue": "633454"
+    },
+    {
+      "Name": "Family and Type",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "387960",
+      "Unit": "",
+      "DisplayValue": "387960"
+    },
+    {
+      "Name": "Family",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "387960",
+      "Unit": "",
+      "DisplayValue": "387960"
+    },
+    {
+      "Name": "Type",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "387960",
+      "Unit": "",
+      "DisplayValue": "387960"
+    },
+    {
+      "Name": "Family Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Id",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "387960",
+      "Unit": "",
+      "DisplayValue": "387960"
+    },
+    {
+      "Name": "Head Height",
+      "DataType": "None",
+      "NumericValue": 7.000000000000001,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "7.000000000000001 "
+    },
+    {
+      "Name": "Sill Height",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Level",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "633454",
+      "Unit": "",
+      "DisplayValue": "633454"
+    },
+    {
+      "Name": "Rough Width",
+      "DataType": "None",
+      "NumericValue": 3.208333333333334,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "3.208333333333334 "
+    },
+    {
+      "Name": "Rough Height",
+      "DataType": "None",
+      "NumericValue": 7.104166666666668,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "7.104166666666668 "
+    },
+    {
+      "Name": "Frame Material",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "HM",
+      "Unit": "",
+      "DisplayValue": "HM"
+    },
+    {
+      "Name": "Frame Type",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "PNT",
+      "Unit": "",
+      "DisplayValue": "PNT"
+    },
+    {
+      "Name": "Mark",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "105B",
+      "Unit": "",
+      "DisplayValue": "105B"
+    },
+    {
+      "Name": "Swing Angle",
+      "DataType": "Angle",
+      "NumericValue": 90,
+      "TextValue": null,
+      "Unit": "degree",
+      "DisplayValue": "90 degree"
+    },
+    {
+      "Name": "Masonry Frame",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Masonry Inset",
+      "DataType": "None",
+      "NumericValue": 0.08333333333333334,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0.08333333333333334 "
+    },
+    {
+      "Name": "Inset Calculate",
+      "DataType": "None",
+      "NumericValue": 0.25,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0.25 "
+    },
+    {
+      "Name": "Dry Wall Frame",
+      "DataType": "Integer",
+      "NumericValue": 1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "1"
+    },
+    {
+      "Name": "MF Opening Height",
+      "DataType": "None",
+      "NumericValue": 0.10416666666666669,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0.10416666666666669 "
+    },
+    {
+      "Name": "MF Opening Width",
+      "DataType": "None",
+      "NumericValue": 0.20833333333333337,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0.20833333333333337 "
+    },
+    {
+      "Name": "Material",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "STL",
+      "Unit": "",
+      "DisplayValue": "STL"
+    },
+    {
+      "Name": "Under Cut",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "--",
+      "Unit": "",
+      "DisplayValue": "--"
+    },
+    {
+      "Name": "Hardware",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "A1",
+      "Unit": "",
+      "DisplayValue": "A1"
+    },
+    {
+      "Name": "Frame Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "PNT",
+      "Unit": "",
+      "DisplayValue": "PNT"
+    },
+    {
+      "Name": "Jamb",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Head",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Sill",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    }
+  ]
+}

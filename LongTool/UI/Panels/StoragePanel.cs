@@ -13,9 +13,9 @@ public class StoragePanel
 
         // Management Panel Button Test
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnStorage", "Nut Storage",
-            "LongTool.Commands.Test.TestPickPointCircleCommand",
-            "Nhấn vào nút Storage",
+            "btnExportElement", "Nut Export Element",
+            "LongTool.Storage.Commands.ExportElementCommand",
+           "Nhấn để xuất dữ liệu Element ra JSON",
             $"{iconPath}Large/33-32.png",
             $"{iconPath}Small/33-16.png");
 

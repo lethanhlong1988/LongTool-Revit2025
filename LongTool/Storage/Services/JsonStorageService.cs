@@ -1,4 +1,6 @@
-﻿using LongTool.Storage.Models;
+﻿using Autodesk.Revit.DB;
+using LongTool.Storage.Models;
+using System;
 using System.IO;
 using System.Text.Json;
 
@@ -6,13 +8,26 @@ namespace LongTool.Storage.Services;
 
 public static class JsonStorageService
 {
-    private static readonly string FolderPath =
-        @"C:\LongTool\Database";
-
-
-    public static void Save(ElementData data)
+    public static void Save(
+        Document document,
+        ElementData data)
     {
-        Directory.CreateDirectory(FolderPath);
+        string databaseFolder =
+            @"C:\Users\letha\Desktop\Long\Hoc Hanh\REVIT API\Bai 4\LongTool\LongTool\Database";
+
+
+        string projectName =
+            GetProjectName(document);
+
+
+        string projectFolder =
+            Path.Combine(
+                databaseFolder,
+                projectName);
+
+
+        Directory.CreateDirectory(
+            projectFolder);
 
 
         string fileName =
@@ -21,7 +36,7 @@ public static class JsonStorageService
 
         string filePath =
             Path.Combine(
-                FolderPath,
+                projectFolder,
                 fileName);
 
 
@@ -37,5 +52,27 @@ public static class JsonStorageService
         File.WriteAllText(
             filePath,
             json);
+    }
+
+
+    private static string GetProjectName(
+        Document document)
+    {
+        string path =
+            document.PathName;
+
+
+        if (string.IsNullOrEmpty(path))
+        {
+            return "Untitled_Project";
+        }
+
+
+        string fileName =
+            Path.GetFileNameWithoutExtension(
+                path);
+
+
+        return fileName;
     }
 }

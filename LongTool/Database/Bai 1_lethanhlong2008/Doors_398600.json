@@ -1,0 +1,255 @@
+{
+  "Id": 398600,
+  "Category": "Doors",
+  "Name": "0762 x 2032mm",
+  "Parameters": [
+    {
+      "Name": "Image",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000023",
+      "Unit": "",
+      "DisplayValue": "-2000023"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000023",
+      "Unit": "",
+      "DisplayValue": "-2000023"
+    },
+    {
+      "Name": "IFC Predefined Type",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC As",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "IfcGUID",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "0XE3yuccLAIfMGA_OiQI8_",
+      "Unit": "",
+      "DisplayValue": "0XE3yuccLAIfMGA_OiQI8_"
+    },
+    {
+      "Name": "Design Option",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Volume",
+      "DataType": "Volume",
+      "NumericValue": 0.09788398399999941,
+      "TextValue": null,
+      "Unit": "m\u00B3",
+      "DisplayValue": "0.09788398399999941 m\u00B3"
+    },
+    {
+      "Name": "Area",
+      "DataType": "Area",
+      "NumericValue": 2.7002339999999783,
+      "TextValue": null,
+      "Unit": "m\u00B2",
+      "DisplayValue": "2.7002339999999783 m\u00B2"
+    },
+    {
+      "Name": "Phase Demolished",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Phase Created",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "86961",
+      "Unit": "",
+      "DisplayValue": "86961"
+    },
+    {
+      "Name": "Comments",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Host Id",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "397435",
+      "Unit": "",
+      "DisplayValue": "397435"
+    },
+    {
+      "Name": "Edited by",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Level",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Workset",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Family and Type",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49488",
+      "Unit": "",
+      "DisplayValue": "49488"
+    },
+    {
+      "Name": "Family",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49488",
+      "Unit": "",
+      "DisplayValue": "49488"
+    },
+    {
+      "Name": "Type",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49488",
+      "Unit": "",
+      "DisplayValue": "49488"
+    },
+    {
+      "Name": "Family Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Id",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49488",
+      "Unit": "",
+      "DisplayValue": "49488"
+    },
+    {
+      "Name": "Head Height",
+      "DataType": "Length",
+      "NumericValue": 2031.9999999999998,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "2031.9999999999998 mm"
+    },
+    {
+      "Name": "Sill Height",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Level",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Frame Material",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Frame Type",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Mark",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "23",
+      "Unit": "",
+      "DisplayValue": "23"
+    },
+    {
+      "Name": "Door_Location",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    }
+  ]
+}

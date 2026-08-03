@@ -1,0 +1,511 @@
+{
+  "Id": 406037,
+  "Category": "Rooms",
+  "Name": "\u5927\u4F1A\u8B70\u5BA4 003",
+  "Parameters": [
+    {
+      "Name": "Image",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Plenum Lighting Contribution",
+      "DataType": "None",
+      "NumericValue": 0.2,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0.2 "
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000160",
+      "Unit": "",
+      "DisplayValue": "-2000160"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000160",
+      "Unit": "",
+      "DisplayValue": "-2000160"
+    },
+    {
+      "Name": "Calculated Supply Airflow per area",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Calculated Cooling Load per area",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Calculated Heating Load per area",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Actual Lighting Load per area",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Actual Power Load per area",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Heat Load Values",
+      "DataType": "Integer",
+      "NumericValue": -1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Lighting Load Units",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Power Load Units",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Sensible Heat Gain per person",
+      "DataType": "None",
+      "NumericValue": 788.6476862657621,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "788.6476862657621 "
+    },
+    {
+      "Name": "Specified Lighting Load",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Specified Power Load",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Actual Lighting Load",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Actual Power Load",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Base Lighting Load on",
+      "DataType": "Integer",
+      "NumericValue": -1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Base Power Load on",
+      "DataType": "Integer",
+      "NumericValue": -1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Specified Lighting Load per area",
+      "DataType": "None",
+      "NumericValue": 10.763910416709722,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "10.763910416709722 "
+    },
+    {
+      "Name": "Specified Power Load per area",
+      "DataType": "None",
+      "NumericValue": 13.993083541722639,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "13.993083541722639 "
+    },
+    {
+      "Name": "Latent Heat Gain per person",
+      "DataType": "None",
+      "NumericValue": 630.9181490126097,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "630.9181490126097 "
+    },
+    {
+      "Name": "Total Heat Gain per person",
+      "DataType": "None",
+      "NumericValue": 1419.5658352783717,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "1419.5658352783717 "
+    },
+    {
+      "Name": "Area per Person",
+      "DataType": "Area",
+      "NumericValue": 28.571428571428573,
+      "TextValue": null,
+      "Unit": "m\u00B2",
+      "DisplayValue": "28.571428571428573 m\u00B2"
+    },
+    {
+      "Name": "Number of People",
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Occupancy Unit",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "IFC Predefined Type",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC As",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "IfcGUID",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "2konZJmnT2kBQWsuSzF0Uc",
+      "Unit": "",
+      "DisplayValue": "2konZJmnT2kBQWsuSzF0Uc"
+    },
+    {
+      "Name": "Design Option",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Phase",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "86961",
+      "Unit": "",
+      "DisplayValue": "86961"
+    },
+    {
+      "Name": "Phase Id",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "86961",
+      "Unit": "",
+      "DisplayValue": "86961"
+    },
+    {
+      "Name": "Comments",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Level",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "Level 1",
+      "Unit": "",
+      "DisplayValue": "Level 1"
+    },
+    {
+      "Name": "Computation Height",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Base Offset",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Limit Offset",
+      "DataType": "Length",
+      "NumericValue": 4000,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "4000 mm"
+    },
+    {
+      "Name": "Upper Limit",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Volume",
+      "DataType": "Volume",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "m\u00B3",
+      "DisplayValue": "0 m\u00B3"
+    },
+    {
+      "Name": "Unbounded Height",
+      "DataType": "Length",
+      "NumericValue": 4000,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "4000 mm"
+    },
+    {
+      "Name": "Perimeter",
+      "DataType": "Length",
+      "NumericValue": 17600.00000000016,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "17600.00000000016 mm"
+    },
+    {
+      "Name": "Level",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Occupancy",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Department",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Base Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Ceiling Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Wall Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Floor Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Area",
+      "DataType": "Area",
+      "NumericValue": 16.205625000000044,
+      "TextValue": null,
+      "Unit": "m\u00B2",
+      "DisplayValue": "16.205625000000044 m\u00B2"
+    },
+    {
+      "Name": "Number",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "003",
+      "Unit": "",
+      "DisplayValue": "003"
+    },
+    {
+      "Name": "Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "\u5927\u4F1A\u8B70\u5BA4",
+      "Unit": "",
+      "DisplayValue": "\u5927\u4F1A\u8B70\u5BA4"
+    },
+    {
+      "Name": "Edited by",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Workset",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Family Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Occupant",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Base Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Ceilling Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Door Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Finish Note",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Floor Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Wall Finish",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    }
+  ]
+}

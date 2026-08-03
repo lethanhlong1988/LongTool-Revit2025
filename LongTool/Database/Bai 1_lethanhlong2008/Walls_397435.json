@@ -1,0 +1,311 @@
+{
+  "Id": 397435,
+  "Category": "Walls",
+  "Name": "Generic - 150mm",
+  "Parameters": [
+    {
+      "Name": "Image",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000011",
+      "Unit": "",
+      "DisplayValue": "-2000011"
+    },
+    {
+      "Name": "Category",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000011",
+      "Unit": "",
+      "DisplayValue": "-2000011"
+    },
+    {
+      "Name": "Cross-Section",
+      "DataType": "Integer",
+      "NumericValue": 1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "1"
+    },
+    {
+      "Name": "IFC Predefined Type",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC As",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "IfcGUID",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "10oNmUZ1P7ow8BCbwuu9Bv",
+      "Unit": "",
+      "DisplayValue": "10oNmUZ1P7ow8BCbwuu9Bv"
+    },
+    {
+      "Name": "Design Option",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Base Extension Distance",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Top Extension Distance",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Volume",
+      "DataType": "Volume",
+      "NumericValue": 3.2704847999999944,
+      "TextValue": null,
+      "Unit": "m\u00B3",
+      "DisplayValue": "3.2704847999999944 m\u00B3"
+    },
+    {
+      "Name": "Area",
+      "DataType": "Area",
+      "NumericValue": 21.80323199999996,
+      "TextValue": null,
+      "Unit": "m\u00B2",
+      "DisplayValue": "21.80323199999996 m\u00B2"
+    },
+    {
+      "Name": "Phase Demolished",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Phase Created",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "86961",
+      "Unit": "",
+      "DisplayValue": "86961"
+    },
+    {
+      "Name": "Comments",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Length",
+      "DataType": "Length",
+      "NumericValue": 6374.999999999991,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "6374.999999999991 mm"
+    },
+    {
+      "Name": "Edited by",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Workset",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Family and Type",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "380058",
+      "Unit": "",
+      "DisplayValue": "380058"
+    },
+    {
+      "Name": "Family",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "380058",
+      "Unit": "",
+      "DisplayValue": "380058"
+    },
+    {
+      "Name": "Type",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "380058",
+      "Unit": "",
+      "DisplayValue": "380058"
+    },
+    {
+      "Name": "Family Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Name",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Id",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "380058",
+      "Unit": "",
+      "DisplayValue": "380058"
+    },
+    {
+      "Name": "Related to Mass",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Structural",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Mark",
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Location Line",
+      "DataType": "Integer",
+      "NumericValue": 3,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "3"
+    },
+    {
+      "Name": "Structural Usage",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Base is Attached",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Top is Attached",
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Top Offset",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Base Offset",
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Base Constraint",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Unconnected Height",
+      "DataType": "Length",
+      "NumericValue": 4000,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "4000 mm"
+    },
+    {
+      "Name": "Top Constraint",
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "694",
+      "Unit": "",
+      "DisplayValue": "694"
+    },
+    {
+      "Name": "Room Bounding",
+      "DataType": "Integer",
+      "NumericValue": 1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "1"
+    }
+  ]
+}
