@@ -21,12 +21,6 @@ public sealed class RevitRenderContext
     public XYZ Origin { get; }
 
     #endregion
-
-
-    private const double MmToFeet = 1.0 / 304.8;
-    private const double FeetToMm = 304.8;
-
-
     #region Constructor
 
     public RevitRenderContext(
@@ -57,8 +51,8 @@ public sealed class RevitRenderContext
     public XYZ ToXYZ(TablePoint point)
     {
         return new XYZ(
-            Origin.X + point.X * MmToFeet,
-            Origin.Y + point.Y * MmToFeet,
+            Origin.X + TableUnit.MmToFeet(point.X),
+            Origin.Y + TableUnit.MmToFeet(point.Y),
             Origin.Z);
     }
     
@@ -72,8 +66,8 @@ public sealed class RevitRenderContext
 
 
         return new TablePoint(
-            (point.X - Origin.X) * FeetToMm,
-            (point.Y - Origin.Y) * FeetToMm);
+            TableUnit.FeetToMm(point.X - Origin.X),
+            TableUnit.FeetToMm(point.Y - Origin.Y));
     }
 
     #endregion

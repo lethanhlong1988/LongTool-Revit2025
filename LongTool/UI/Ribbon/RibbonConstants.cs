@@ -9,6 +9,7 @@ public static class RibbonConstants
     public const string ManagementPanel = "Management";
     public const string TestPanel = "Test";
     public const string TabelPanel = "Table";
+    public const string StoragePanel = "Storage";
 
     public const string UtilityToolsPanel = "Tiện ích";
 

@@ -13,6 +13,7 @@ using LongTool.Tables.Models;
 using LongTool.Core.Selection;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace LongTool.Commands.TableCommand;
 
@@ -67,6 +68,61 @@ public class TestTableRenderCommand : IExternalCommand
             DoorScheduleService.Fill(table, door);
 
             TableDebugger.Show(table);
+
+            using (Transaction trans =
+                new Transaction(doc, "AutoFit Table"))
+            {
+                trans.Start();
+
+                // đoạn AutoFit ở đây
+
+
+            //--------------------------------------------------
+            // Auto Fit Table
+            //--------------------------------------------------
+
+            TextNoteType textType =
+                new FilteredElementCollector(doc)
+                    .OfClass(typeof(TextNoteType))
+                    .FirstElement() as TextNoteType;
+
+
+            if (textType == null)
+            {
+                throw new InvalidOperationException(
+                    "Không tìm thấy TextNoteType.");
+            }
+
+
+            ElementId textTypeId =
+                textType.Id;
+
+            TableTextMeasureService textMeasure =
+                new TableTextMeasureService(
+                    doc,
+                    doc.ActiveView,
+                    textTypeId);
+
+
+            TableAutoFitService autoFit =
+                new TableAutoFitService(
+                    textMeasure);
+
+            TableLayout tempLayout =
+                new TableLayout(table);
+
+            tempLayout.Build();
+
+            autoFit.AutoFit(tempLayout);
+
+            foreach (var column in table.Columns)
+            {
+                Debug.WriteLine(
+                    $"AFTER AUTOFIT Column {column.Index}: {column.Width}");
+            }
+
+                trans.Commit();
+            }
 
             //--------------------------------------------------
             // 3. Build Layout

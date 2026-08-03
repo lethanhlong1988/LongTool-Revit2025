@@ -18,8 +18,9 @@ public class TableTextRenderer
     private readonly ElementId _textTypeId;
     private readonly DebugMarkerRenderer _debugMarker;
     private const bool DebugMode = false;
+    private readonly TableTextMeasureService _measureService;
 
-    private const double MmToFeet = 1.0 / 304.8;
+    //private const double MmToFeet = 1.0 / 304.8;
     private const double TextHeightMm = 2.5;
 
     public TableTextRenderer(Document doc, View view, RevitRenderContext context)
@@ -29,7 +30,12 @@ public class TableTextRenderer
         _context = context ?? throw new ArgumentNullException(nameof(context));
 
         _textTypeId = FindTextType();
-        _debugMarker = new DebugMarkerRenderer(_doc, _view);
+        _measureService =
+            new TableTextMeasureService(
+                _doc,
+                _view,
+                _textTypeId);
+                _debugMarker = new DebugMarkerRenderer(_doc, _view);
 
         SetupTextType();
     }
@@ -60,11 +66,9 @@ public class TableTextRenderer
                 text,
                 _textTypeId);
 
-            if (note == null)
-                return;
+                        if (note == null)
+                            return;
 
-            //note.HorizontalAlignment = HorizontalTextAlignment.Center;
-            //note.VerticalAlignment = VerticalTextAlignment.Middle;
 
             note.HorizontalAlignment =
                 ConvertHorizontalAlignment(
@@ -74,6 +78,15 @@ public class TableTextRenderer
             note.VerticalAlignment =
                 ConvertVerticalAlignment(
                     cellLayout.Style.VerticalAlignment);
+
+
+            _doc.Regenerate();
+
+
+            TextMeasureResult result =
+                _measureService.Measure(
+                    text,
+                    position);
 
             if (DebugMode)
             {
@@ -97,7 +110,7 @@ public class TableTextRenderer
         Parameter size = type.get_Parameter(BuiltInParameter.TEXT_SIZE);
         if (size != null && !size.IsReadOnly)
         {
-            size.Set(TextHeightMm * MmToFeet);
+            size.Set(TableUnit.MmToFeet(TextHeightMm));
         }
     }
 

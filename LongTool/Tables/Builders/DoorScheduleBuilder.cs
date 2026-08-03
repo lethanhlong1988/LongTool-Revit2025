@@ -162,7 +162,7 @@ public static class DoorScheduleBuilder
 
         TableCell cellB7 = table.Rows[6].AddCell();
         cellB7.Name = "Cell_B7_C7_Merged";
-        cellB7.Text = "飛散防止フィルム、天井センサー感知方式、安全ビーム付、電気錠(停電時直前状態保持・火報連動解錠) 戸先ゴム、低振動・低騒音型 電気錠 (マジカルテンキー：内・外別番号) 、防潮板、両面シリンダー\"";
+        cellB7.Text = "飛散防止フィルム、天井センサー感知方式、安全ビーム付、\n電気錠(停電時直前状態保持・火報連動解錠) 戸先ゴム、\n低振動・低騒音型 電気錠 (マジカルテンキー：内・外別番号) 、防潮板、両面シリンダー\"";
         cellB7.ColSpan = 2;
 
 

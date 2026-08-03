@@ -26,8 +26,8 @@ public class RibbonBuilder
             new Panels.TestPanel().Build(TestPanel, _assemblyPath);
 
             // Tạo Panel : Công cụ cơ bản
-            var basicPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.BasicToolsPanel);
-            new Panels.BasicToolsPanel().Build(basicPanel, _assemblyPath);
+            //var basicPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.BasicToolsPanel);
+            //new Panels.BasicToolsPanel().Build(basicPanel, _assemblyPath);
 
             // Tạo Panel : Công cụ nâng cao
             //var advancedPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.AdvancedToolsPanel);
@@ -44,6 +44,10 @@ public class RibbonBuilder
             // Panel : Công cụ Tabel
             var TabelPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.TabelPanel);
             new Panels.TabelPanel().Build(TabelPanel, _assemblyPath);
+
+            // Panel : Công cụ Storage
+            var StoragePanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.StoragePanel);
+            new Panels.StoragePanel().Build(StoragePanel, _assemblyPath);
 
         }
         catch (Exception ex)

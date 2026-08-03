@@ -65,8 +65,11 @@ public sealed class Table
                 nameof(width));
 
 
+        int index = _columns.Count;
+
+
         _columns.Add(
-            new TableColumn(width));
+            new TableColumn(index, width));
     }
 
 
