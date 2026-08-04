@@ -2,6 +2,7 @@
 using LongTool.Storage.Models;
 using LongTool.Storage.Services;
 using System;
+using System.Linq;
 
 namespace LongTool.Storage.Collectors;
 
@@ -24,8 +25,10 @@ public static class ElementCollector
         {
             Id = element.Id.Value,
 
+            UniqueId = element.UniqueId,
+
             Category = element.Category?.Name
-                       ?? string.Empty,
+               ?? string.Empty,
 
             Name = element.Name
         };
@@ -40,6 +43,26 @@ public static class ElementCollector
             if (parameterData != null)
             {
                 data.Parameters.Add(parameterData);
+            }
+        }
+
+        ElementType? elementType =
+    document.GetElement(element.GetTypeId()) as ElementType;
+
+
+        if (elementType != null)
+        {
+            foreach (Parameter parameter in elementType.Parameters)
+            {
+                ParameterData? parameterData =
+                    ParameterConverter.Convert(parameter);
+
+
+                if (parameterData != null &&
+                    !data.Parameters.Any(p => p.Name == parameterData.Name))
+                {
+                    data.Parameters.Add(parameterData);
+                }
             }
         }
 

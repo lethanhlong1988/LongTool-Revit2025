@@ -10,6 +10,7 @@ public static class RibbonConstants
     public const string TestPanel = "Test";
     public const string TabelPanel = "Table";
     public const string StoragePanel = "Storage";
+    public const string InspectPanel = "Inspect";
 
     public const string UtilityToolsPanel = "Tiện ích";
 

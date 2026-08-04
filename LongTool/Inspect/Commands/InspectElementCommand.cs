@@ -2,20 +2,19 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using LongTool.Storage.Collectors;
-using LongTool.Storage.Models;
+using LongTool.Inspect.Services;
 using LongTool.Storage.Services;
 using System;
 
-namespace LongTool.Storage.Commands;
+namespace LongTool.Inspect.Commands;
 
 [Transaction(TransactionMode.Manual)]
-public class ExportElementCommand : IExternalCommand
+public class InspectElementCommand : IExternalCommand
 {
     public Result Execute(
-    ExternalCommandData commandData,
-    ref string message,
-    ElementSet elements)
+        ExternalCommandData commandData,
+        ref string message,
+        ElementSet elements)
     {
         try
         {
@@ -33,7 +32,7 @@ public class ExportElementCommand : IExternalCommand
                 reference =
                     uidoc.Selection.PickObject(
                         ObjectType.Element,
-                        "Select an element to export");
+                        "Select an element to inspect");
             }
             catch
             {
@@ -43,20 +42,42 @@ public class ExportElementCommand : IExternalCommand
 
             ElementStorageService storage = new();
 
-            ElementData data =
+            var data =
                 storage.Get(
                     doc,
                     reference.ElementId);
 
 
-            JsonStorageService.Save(
-                doc,
-                data);
+            InspectorService inspector = new();
 
+            var result =
+                inspector.Inspect(data);
+
+            string messageText = string.Empty;
+
+
+            foreach (var group in result)
+            {
+                messageText +=
+                    $"{group.Name}\n";
+
+                messageText +=
+                    "----------------\n";
+
+
+                foreach (var parameter in group.Parameters)
+                {
+                    messageText +=
+                        $"{parameter.Name}: {parameter.DisplayValue}\n";
+                }
+
+
+                messageText += "\n";
+            }
 
             TaskDialog.Show(
-                "LongTool",
-                $"Exported:\n{data.Category}\n{data.Name}");
+                "LongTool Inspect",
+                messageText);
 
 
             return Result.Succeeded;

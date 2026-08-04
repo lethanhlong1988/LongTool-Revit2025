@@ -49,6 +49,10 @@ public class RibbonBuilder
             var StoragePanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.StoragePanel);
             new Panels.StoragePanel().Build(StoragePanel, _assemblyPath);
 
+            // Panel : Công cụ Inspect
+            var InspectPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.InspectPanel);
+            new Panels.InspectPanel().Build(InspectPanel, _assemblyPath);
+
         }
         catch (Exception ex)
         {

@@ -10,6 +10,8 @@ public class ElementData
 
     public string Name { get; set; } = string.Empty;
 
+    public string UniqueId { get; set; } = string.Empty;
+
     public List<ParameterData> Parameters { get; set; }
         = new();
 }
