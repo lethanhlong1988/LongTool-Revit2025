@@ -1,0 +1,665 @@
+{
+  "Id": 398246,
+  "Category": "Doors",
+  "Name": "0915 x 2134mm",
+  "UniqueId": "21383f38-9a65-4a4a-9590-2be62c6f3736-000613a6",
+  "Parameters": [
+    {
+      "Name": "Image",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Category",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000023",
+      "Unit": "",
+      "DisplayValue": "-2000023"
+    },
+    {
+      "Name": "Category",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-2000023",
+      "Unit": "",
+      "DisplayValue": "-2000023"
+    },
+    {
+      "Name": "IFC Predefined Type",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC As",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export to IFC",
+      "IsTypeParameter": false,
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "IfcGUID",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "0XE3yuccLAIfMGA_OiQIIG",
+      "Unit": "",
+      "DisplayValue": "0XE3yuccLAIfMGA_OiQIIG"
+    },
+    {
+      "Name": "Design Option",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Volume",
+      "IsTypeParameter": false,
+      "DataType": "Volume",
+      "NumericValue": 0.11985610999999936,
+      "TextValue": null,
+      "Unit": "m\u00B3",
+      "DisplayValue": "0.11985610999999936 m\u00B3"
+    },
+    {
+      "Name": "Area",
+      "IsTypeParameter": false,
+      "DataType": "Area",
+      "NumericValue": 3.1895789999999753,
+      "TextValue": null,
+      "Unit": "m\u00B2",
+      "DisplayValue": "3.1895789999999753 m\u00B2"
+    },
+    {
+      "Name": "Phase Demolished",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Phase Created",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "86961",
+      "Unit": "",
+      "DisplayValue": "86961"
+    },
+    {
+      "Name": "Comments",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Host Id",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "398106",
+      "Unit": "",
+      "DisplayValue": "398106"
+    },
+    {
+      "Name": "Edited by",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Level",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Workset",
+      "IsTypeParameter": false,
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Family and Type",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49480",
+      "Unit": "",
+      "DisplayValue": "49480"
+    },
+    {
+      "Name": "Family",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49480",
+      "Unit": "",
+      "DisplayValue": "49480"
+    },
+    {
+      "Name": "Type",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49480",
+      "Unit": "",
+      "DisplayValue": "49480"
+    },
+    {
+      "Name": "Family Name",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Name",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Id",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "49480",
+      "Unit": "",
+      "DisplayValue": "49480"
+    },
+    {
+      "Name": "Head Height",
+      "IsTypeParameter": false,
+      "DataType": "Length",
+      "NumericValue": 2134,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "2134 mm"
+    },
+    {
+      "Name": "Sill Height",
+      "IsTypeParameter": false,
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Level",
+      "IsTypeParameter": false,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "311",
+      "Unit": "",
+      "DisplayValue": "311"
+    },
+    {
+      "Name": "Frame Material",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Frame Type",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Finish",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Mark",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "20",
+      "Unit": "",
+      "DisplayValue": "20"
+    },
+    {
+      "Name": "Door_Location",
+      "IsTypeParameter": false,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Image",
+      "IsTypeParameter": true,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "-1",
+      "Unit": "",
+      "DisplayValue": "-1"
+    },
+    {
+      "Name": "Keynote",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type IFC Predefined Type",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export Type to IFC As",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Export Type to IFC",
+      "IsTypeParameter": true,
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Type IfcGUID",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "3W2Tu2KKr66wtPU$rPGsDC",
+      "Unit": "",
+      "DisplayValue": "3W2Tu2KKr66wtPU$rPGsDC"
+    },
+    {
+      "Name": "Model",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Manufacturer",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Comments",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "URL",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Description",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Code Name",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Define Thermal Properties by",
+      "IsTypeParameter": true,
+      "DataType": "Integer",
+      "NumericValue": 1,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "1"
+    },
+    {
+      "Name": "Construction Type Id",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "MDOOR",
+      "Unit": "",
+      "DisplayValue": "MDOOR"
+    },
+    {
+      "Name": "Analytic Construction",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "Metal",
+      "Unit": "",
+      "DisplayValue": "Metal"
+    },
+    {
+      "Name": "Visual Light Transmittance",
+      "IsTypeParameter": true,
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Solar Heat Gain Coefficient",
+      "IsTypeParameter": true,
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Thermal Resistance (R)",
+      "IsTypeParameter": true,
+      "DataType": "None",
+      "NumericValue": 0.27011696064395885,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0.27011696064395885 "
+    },
+    {
+      "Name": "Heat Transfer Coefficient (U)",
+      "IsTypeParameter": true,
+      "DataType": "None",
+      "NumericValue": 3.7021,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "3.7021 "
+    },
+    {
+      "Name": "Classification Title",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Classification Number",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Assembly Description",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Assembly Code",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Type Mark",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "20",
+      "Unit": "",
+      "DisplayValue": "20"
+    },
+    {
+      "Name": "Wall Closure",
+      "IsTypeParameter": true,
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Rough Width",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Rough Height",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "0 mm"
+    },
+    {
+      "Name": "Thickness",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 51,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "51 mm"
+    },
+    {
+      "Name": "Width",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 915,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "915 mm"
+    },
+    {
+      "Name": "Height",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 2134,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "2134 mm"
+    },
+    {
+      "Name": "Operation",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Construction Type",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Fire Rating",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "",
+      "Unit": "",
+      "DisplayValue": ""
+    },
+    {
+      "Name": "Cost",
+      "IsTypeParameter": true,
+      "DataType": "None",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0 "
+    },
+    {
+      "Name": "Function",
+      "IsTypeParameter": true,
+      "DataType": "Integer",
+      "NumericValue": 0,
+      "TextValue": null,
+      "Unit": "",
+      "DisplayValue": "0"
+    },
+    {
+      "Name": "Trim Width",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 76,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "76 mm"
+    },
+    {
+      "Name": "Trim Projection Ext",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 25,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "25 mm"
+    },
+    {
+      "Name": "Trim Projection Int",
+      "IsTypeParameter": true,
+      "DataType": "Length",
+      "NumericValue": 25,
+      "TextValue": null,
+      "Unit": "mm",
+      "DisplayValue": "25 mm"
+    },
+    {
+      "Name": "Door Material",
+      "IsTypeParameter": true,
+      "DataType": "ElementId",
+      "NumericValue": null,
+      "TextValue": "10429",
+      "Unit": "",
+      "DisplayValue": "10429"
+    },
+    {
+      "Name": "Door_Finish_Specification",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "Abc",
+      "Unit": "",
+      "DisplayValue": "Abc"
+    },
+    {
+      "Name": "Door_Frame_Glass_Spec",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "Def",
+      "Unit": "",
+      "DisplayValue": "Def"
+    },
+    {
+      "Name": "Door_Hardware_Specification",
+      "IsTypeParameter": true,
+      "DataType": "Text",
+      "NumericValue": null,
+      "TextValue": "Gkh",
+      "Unit": "",
+      "DisplayValue": "Gkh"
+    }
+  ]
+}

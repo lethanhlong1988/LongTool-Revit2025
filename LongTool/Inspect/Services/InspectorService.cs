@@ -80,8 +80,9 @@ public class InspectorService
             if (parameter.Unit == "mm" ||
                 parameter.Unit == "m" ||
                 parameter.Unit == "sq.m" ||
-                parameter.Unit == "cu.m")
-            
+                parameter.Unit == "cu.m" ||
+                parameter.Name == "Area" ||
+                parameter.Name == "Volume")
             {
                 dimensions.Parameters.Add(parameter);
 

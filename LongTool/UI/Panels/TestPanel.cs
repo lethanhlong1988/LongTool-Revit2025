@@ -14,7 +14,8 @@ public class TestPanel
         // Management Panel Button Test
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnTest", "Nut Test",
-            "LongTool.Commands.Test.TestPickPointCircleCommand",
+            //"LongTool.Commands.Test.TestPickPointCircleCommand",
+            "LongTool.Properties.Commands.InspectElementCommand",
             "Nhấn vào nút Test",
             $"{iconPath}Large/26-32.png",
             $"{iconPath}Small/26-16.png");

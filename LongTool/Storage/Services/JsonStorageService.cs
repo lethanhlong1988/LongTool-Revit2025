@@ -54,6 +54,14 @@ public static class JsonStorageService
             json);
     }
 
+    // Update method to update the existing JSON file with new data
+    public static void Update(
+        Document document,
+        ElementData data)
+    {
+        Save(document, data);
+    }
+
 
     private static string GetProjectName(
         Document document)

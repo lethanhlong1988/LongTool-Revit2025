@@ -4,6 +4,8 @@ public class ParameterData
 {
     public string Name { get; set; } = string.Empty;
 
+    public bool IsTypeParameter { get; set; }
+
     public string DataType { get; set; } = string.Empty;
 
     public double? NumericValue { get; set; }

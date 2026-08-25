@@ -42,6 +42,8 @@ public static class ElementCollector
 
             if (parameterData != null)
             {
+                parameterData.IsTypeParameter = false;
+
                 data.Parameters.Add(parameterData);
             }
         }
@@ -59,13 +61,15 @@ public static class ElementCollector
 
 
                 if (parameterData != null &&
-                    !data.Parameters.Any(p => p.Name == parameterData.Name))
+                    !data.Parameters.Any(
+                        p => p.Name == parameterData.Name))
                 {
+                    parameterData.IsTypeParameter = true;
+
                     data.Parameters.Add(parameterData);
                 }
             }
         }
-
 
         return data;
     }

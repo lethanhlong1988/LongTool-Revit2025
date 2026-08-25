@@ -13,6 +13,7 @@
 
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
+		<AppDesignerFolder>Properties-new</AppDesignerFolder>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -46,6 +47,7 @@
 	<ItemGroup>
 	  <Folder Include="FinishEngine\Generation\" />
 	  <Folder Include="FinishEngine\Debug\" />
+	  <Folder Include="Parameters\" />
 	  <Folder Include="Recycle\" />
 	  <Folder Include="RoomFinish\Utils\" />
 	  <Folder Include="Tables\Commands\" />
