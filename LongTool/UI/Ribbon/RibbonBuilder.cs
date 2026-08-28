@@ -53,6 +53,10 @@ public class RibbonBuilder
             var InspectPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.InspectPanel);
             new Panels.InspectPanel().Build(InspectPanel, _assemblyPath);
 
+            // Panel : Công cụ JobAroad
+            var JobAroadPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.JobAroadPanel);
+            new Panels.JobAbroadPanel().Build(JobAroadPanel, _assemblyPath);
+
         }
         catch (Exception ex)
         {
