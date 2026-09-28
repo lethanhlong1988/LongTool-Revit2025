@@ -2,7 +2,7 @@
 
 public static class RibbonConstants
 {
-    public const string TabName = "LongTool";
+    public const string TabName = "Joh Abroad Tool";
     public const string BasicToolsPanel = "Công cụ cơ bản";
     public const string AdvancedToolsPanel = "Công cụ nâng cao";
     public const string LongToolsPanel = "Công cụ Long tạo";

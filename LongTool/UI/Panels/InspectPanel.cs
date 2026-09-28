@@ -13,7 +13,7 @@ public class InspectPanel
 
         // Management Panel Button Show Inspect Element
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnShowInspect", "Show Inspect",
+            "btnShowInspect", "Show\nInspect",
             "LongTool.Inspect.Commands.ShowInspectCommand",
            "Nhấn để hiển thị bảng dữ liệu Element",
             $"{iconPath}Large/43-32.png",
@@ -21,7 +21,7 @@ public class InspectPanel
 
         // Management Panel Button Show Inspect Element
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnShowProperties", "Show Properties",
+            "btnShowProperties", "Show\nProperties",
             " LongTool.Properties.Commands.ShowPropertiesCommand",
            "Nhấn để hiển thị bảng dữ liệu Element",
             $"{iconPath}Large/41-32.png",

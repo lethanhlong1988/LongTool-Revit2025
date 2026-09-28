@@ -34,20 +34,20 @@ public class RibbonBuilder
             //new Panels.AdvancedToolsPanel().Build(advancedPanel, _assemblyPath);
 
             // Panel : Công cụ tạo mới
-            var createPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.LongToolsPanel);
-            new Panels.CreateToolsPanel().Build(createPanel, _assemblyPath);
+            //var createPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.LongToolsPanel);
+            //new Panels.CreateToolsPanel().Build(createPanel, _assemblyPath);
 
             // Panel : Công cụ Management
-            var managementPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.ManagementPanel);
-            new Panels.ManagementPanel().Build(managementPanel, _assemblyPath);
+            //var managementPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.ManagementPanel);
+            //new Panels.ManagementPanel().Build(managementPanel, _assemblyPath);
 
             // Panel : Công cụ Tabel
-            var TabelPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.TabelPanel);
-            new Panels.TabelPanel().Build(TabelPanel, _assemblyPath);
+            //var TabelPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.TabelPanel);
+            //new Panels.TabelPanel().Build(TabelPanel, _assemblyPath);
 
             // Panel : Công cụ Storage
-            var StoragePanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.StoragePanel);
-            new Panels.StoragePanel().Build(StoragePanel, _assemblyPath);
+            //var StoragePanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.StoragePanel);
+            //new Panels.StoragePanel().Build(StoragePanel, _assemblyPath);
 
             // Panel : Công cụ Inspect
             var InspectPanel = _application.CreateRibbonPanel(RibbonConstants.TabName, RibbonConstants.InspectPanel);

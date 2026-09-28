@@ -1,0 +1,65 @@
+﻿ <Window x:Class="LongTool.UI.DimStyle.DimStyleSelectionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Select Dim Style"
+        Width="420"
+        Height="360"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
+
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ====================================================== -->
+        <!-- TITLE -->
+        <!-- ====================================================== -->
+
+        <TextBlock Grid.Row="0"
+                   Text="Select Dim Style"
+                   FontSize="16"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,10"/>
+
+        <!-- ====================================================== -->
+        <!-- DIM STYLE LIST -->
+        <!-- ====================================================== -->
+
+        <ListBox x:Name="DimStyleListBox"
+                 Grid.Row="1"
+                 MinHeight="220"
+                 SelectionMode="Single"
+                 DisplayMemberPath="Name"/>
+
+        <!-- ====================================================== -->
+        <!-- BUTTONS -->
+        <!-- ====================================================== -->
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,15,0,0">
+
+            <Button Content="OK"
+                    Width="80"
+                    Height="28"
+                    Margin="0,0,8,0"
+                    IsDefault="True"
+                    Click="OkButton_Click"/>
+
+            <Button Content="Cancel"
+                    Width="80"
+                    Height="28"
+                    IsCancel="True"
+                    Click="CancelButton_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>

@@ -4,6 +4,7 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LongTool.Services.LineStyle;
 
 namespace LongTool.Commands.JohAbroad
 {
@@ -46,6 +47,21 @@ namespace LongTool.Commands.JohAbroad
                     "Draw Wall Center Line",
                     "Không có Wall nào được chọn.");
 
+                return Result.Cancelled;
+            }
+
+            // ============================================================
+            // CHỌN LINE STYLE
+            // ============================================================
+
+            LineStyleSelectorService lineStyleSelector =
+                new LineStyleSelectorService();
+
+            GraphicsStyle selectedLineStyle =
+                lineStyleSelector.Select(doc);
+
+            if (selectedLineStyle == null)
+            {
                 return Result.Cancelled;
             }
 
@@ -115,6 +131,13 @@ namespace LongTool.Commands.JohAbroad
 
                         if (detailCurve != null)
                         {
+                            // ========================================================
+                            // GÁN LINE STYLE ĐÃ CHỌN
+                            // ========================================================
+
+                            detailCurve.LineStyle =
+                                selectedLineStyle;
+
                             createdCount++;
                         }
                         else

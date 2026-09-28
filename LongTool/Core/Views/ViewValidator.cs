@@ -9,10 +9,10 @@ public static class ViewValidator
         if (view == null)
             return false;
 
-
         return
             view.ViewType == ViewType.FloorPlan ||
             view.ViewType == ViewType.CeilingPlan ||
-            view.ViewType == ViewType.DraftingView;
+            view.ViewType == ViewType.DraftingView ||
+            view.ViewType == ViewType.Legend;
     }
 }

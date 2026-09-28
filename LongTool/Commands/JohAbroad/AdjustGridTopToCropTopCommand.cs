@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using RevitGrid = Autodesk.Revit.DB.Grid;
+
 namespace LongTool.Commands.JohAbroad
 {
     [Transaction(TransactionMode.Manual)]
@@ -17,6 +19,12 @@ namespace LongTool.Commands.JohAbroad
         {
             UIDocument uiDoc =
                 commandData.Application.ActiveUIDocument;
+
+            if (uiDoc == null)
+            {
+                message = "Không có tài liệu Revit đang mở.";
+                return Result.Failed;
+            }
 
             Document doc = uiDoc.Document;
 
@@ -128,16 +136,24 @@ namespace LongTool.Commands.JohAbroad
                         continue;
                     }
 
+                    BoundingBoxXYZ cropBox = view.CropBox;
+
+                    if (cropBox == null)
+                    {
+                        skippedViews++;
+                        continue;
+                    }
+
                     processedViews++;
 
                     // --------------------------------------------------------
                     // Lấy Grid đang hiển thị trong View
                     // --------------------------------------------------------
 
-                    List<Grid> grids =
+                    List<RevitGrid> grids =
                         new FilteredElementCollector(doc, view.Id)
-                            .OfClass(typeof(Grid))
-                            .Cast<Grid>()
+                            .OfClass(typeof(RevitGrid))
+                            .Cast<RevitGrid>()
                             .ToList();
 
                     foundGrids += grids.Count;
@@ -146,13 +162,11 @@ namespace LongTool.Commands.JohAbroad
                     // Xử lý từng Grid
                     // --------------------------------------------------------
 
-                    foreach (Grid grid in grids)
+                    foreach (RevitGrid grid in grids)
                     {
                         try
                         {
-                            if (AdjustGridTop(
-                                grid,
-                                view))
+                            if (AdjustGridTop(grid, view))
                             {
                                 modifiedGrids++;
                             }
@@ -168,7 +182,13 @@ namespace LongTool.Commands.JohAbroad
                 transaction.Commit();
 
                 // ============================================================
-                // 8. Kết quả
+                // 8. Làm mới View hiện tại
+                // ============================================================
+
+                uiDoc.RefreshActiveView();
+
+                // ============================================================
+                // 9. Kết quả
                 // ============================================================
 
                 TaskDialog.Show(
@@ -191,15 +211,15 @@ namespace LongTool.Commands.JohAbroad
         }
 
         // ====================================================================
-        // Điều chỉnh đầu trên Grid
+        // Điều chỉnh đầu trên Grid sát Crop Top
         // ====================================================================
 
         private static bool AdjustGridTop(
-            Grid grid,
+            RevitGrid grid,
             View view)
         {
             // ================================================================
-            // Lấy Curve của Grid trong View
+            // 1. Lấy Curve của Grid trong View
             // ================================================================
 
             IList<Curve> curves =
@@ -211,7 +231,7 @@ namespace LongTool.Commands.JohAbroad
                 return false;
 
             // ================================================================
-            // CropBox
+            // 2. Lấy CropBox
             // ================================================================
 
             BoundingBoxXYZ cropBox =
@@ -224,13 +244,12 @@ namespace LongTool.Commands.JohAbroad
                 cropBox.Transform;
 
             // ================================================================
-            // Crop Top
+            // 3. Crop Top
             //
             // Trong hệ tọa độ local của CropBox:
             //
             // Min.Y = đáy
             // Max.Y = đỉnh
-            //
             // ================================================================
 
             double cropTop =
@@ -239,7 +258,7 @@ namespace LongTool.Commands.JohAbroad
             bool modified = false;
 
             // ================================================================
-            // Xử lý từng Curve
+            // 4. Xử lý từng Curve
             // ================================================================
 
             foreach (Curve curve in curves)
@@ -288,30 +307,18 @@ namespace LongTool.Commands.JohAbroad
                 }
 
                 // ============================================================
-                // ĐIỂM QUAN TRỌNG NHẤT
-                //
-                // Chỉ xử lý khi đầu trên đang vượt quá Crop Top.
-                //
-                // Nếu:
-                //
-                // topLocal.Y > cropTop
-                //
-                // nghĩa là đầu trên Grid đang tràn ra ngoài phía trên View.
+                // 5. Chỉ xử lý khi đầu trên vượt Crop Top
                 // ============================================================
 
                 const double tolerance = 1e-7;
 
                 if (topLocal.Y <= cropTop + tolerance)
                 {
-                    // Đầu trên đã nằm trong hoặc sát Crop Top.
-                    // Không làm gì.
                     continue;
                 }
 
                 // ============================================================
-                // Giữ nguyên bottomLocal
-                //
-                // Chỉ thay đổi topLocal.
+                // 6. Vector từ đầu dưới đến đầu trên
                 // ============================================================
 
                 XYZ direction =
@@ -321,43 +328,45 @@ namespace LongTool.Commands.JohAbroad
                     continue;
 
                 // ============================================================
-                // Tìm vị trí trên Grid tại Crop Top
+                // 7. Tìm vị trí giao giữa Grid và Crop Top
                 //
                 // P = Bottom + t * Direction
                 //
-                // Ta cần:
+                // Điều kiện:
                 //
                 // P.Y = CropTop
-                //
                 // ============================================================
+
+                if (Math.Abs(direction.Y) < 1e-9)
+                    continue;
 
                 double t =
                     (cropTop - bottomLocal.Y)
                     / direction.Y;
 
                 // ------------------------------------------------------------
-                // Với trường hợp đầu trên đang vượt Crop Top,
-                // t phải nằm giữa 0 và 1.
+                // Với Grid vượt Crop Top, t phải nằm trong đoạn 0 → 1
                 // ------------------------------------------------------------
 
                 if (t <= 0 || t >= 1)
                     continue;
 
                 // ============================================================
-                // Tạo đầu trên mới
+                // 8. Tạo đầu trên mới
                 // ============================================================
 
                 XYZ newTopLocal =
                     bottomLocal + direction * t;
 
                 // Đảm bảo chính xác bằng Crop Top
-                newTopLocal = new XYZ(
-                    newTopLocal.X,
-                    cropTop,
-                    newTopLocal.Z);
+                newTopLocal =
+                    new XYZ(
+                        newTopLocal.X,
+                        cropTop,
+                        newTopLocal.Z);
 
                 // ============================================================
-                // Chuyển trở lại Model Coordinate
+                // 9. Chuyển về Model Coordinate
                 // ============================================================
 
                 XYZ bottomModel =
@@ -367,10 +376,10 @@ namespace LongTool.Commands.JohAbroad
                     cropTransform.OfPoint(newTopLocal);
 
                 // ============================================================
-                // Tạo Line mới
+                // 10. Tạo Line mới
                 //
-                // Bottom giữ nguyên.
-                // Top thay đổi.
+                // Đầu dưới giữ nguyên.
+                // Đầu trên được kéo sát Crop Top.
                 // ============================================================
 
                 Line newLine =
@@ -379,7 +388,7 @@ namespace LongTool.Commands.JohAbroad
                         newTopModel);
 
                 // ============================================================
-                // Gán lại Curve cho Grid trong View hiện tại
+                // 11. Gán Curve mới cho Grid trong View hiện tại
                 // ============================================================
 
                 grid.SetCurveInView(

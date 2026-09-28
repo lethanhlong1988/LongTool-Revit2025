@@ -13,12 +13,20 @@ public class TestPanel
 
         // Management Panel Button Test
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnTest", "Nut Test",
+            "btnTest", "Test",
             //"LongTool.Commands.Test.TestPickPointCircleCommand",
-            "LongTool.Commands.JohAbroad.HideLevelsHeadCommand",
+            "LongTool.Commands.JohAbroad.DrawTableBoardCommand",
             "Nhấn vào nút Test",
             $"{iconPath}Large/26-32.png",
             $"{iconPath}Small/26-16.png");
+        // Management Panel Button Test
+        buttonBuilder.AddPushButtonToPanel(panel,
+            "btnTest02", "Test02",
+            //"LongTool.Commands.Test.TestPickPointCircleCommand",
+            "LongTool.Commands.JohAbroad.BeamSectionDimensionCommand",
+            "Nhấn vào nút Test02",
+            $"{iconPath}Large/27-32.png",
+            $"{iconPath}Small/27-16.png");
 
     }
 }

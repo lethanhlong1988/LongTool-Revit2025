@@ -13,7 +13,7 @@ public class TabelPanel
 
         // Tabel Panel
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnTableDraw", "Table Draw",
+            "btnTableDraw", "Table\nDraw",
             "LongTool.Commands.TableCommand.DrawTableCommand",
             "Nhấn vào Lệnh vẽ bảng",
             $"{iconPath}Large/30-32.png",
@@ -21,7 +21,7 @@ public class TabelPanel
 
         // Tabel Draw Button
         buttonBuilder.AddPushButtonToPanel(panel,
-            "btnTableDraw02", "Table Draw02",
+            "btnTableDraw02", "Table\nDraw02",
             "LongTool.Commands.TableCommand.TestTableRenderCommand",
             "Nhấn vào Lệnh vẽ bảng",
             $"{iconPath}Large/31-32.png",
