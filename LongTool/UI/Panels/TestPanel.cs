@@ -27,6 +27,29 @@ public class TestPanel
             "Nhấn vào nút Test02",
             $"{iconPath}Large/27-32.png",
             $"{iconPath}Small/27-16.png");
+        // Management Panel Button Test
+        buttonBuilder.AddPushButtonToPanel(panel,
+            "btnTest03", "Test03",
+            //"LongTool.Commands.Test.TestPickPointCircleCommand",
+            "LongTool.Commands.Test.TestDimBeamSectionCommand",
+            "Nhấn vào nút Test03",
+            $"{iconPath}Large/28-32.png",
+            $"{iconPath}Small/28-16.png");
+        // Management Panel Button Test
+        buttonBuilder.AddPushButtonToPanel(panel,
+            "btnTest04", "Test04",
+            //"LongTool.Commands.Test.TestPickPointCircleCommand",
+            "LongTool.Commands.Test.TestDoorBoardCommand",
+            "Nhấn vào nút Test04",
+            $"{iconPath}Large/29-32.png",
+            $"{iconPath}Small/29-16.png");// Management Panel Button Test
+        buttonBuilder.AddPushButtonToPanel(panel,
+            "btnTest05", "Test05",
+            //"LongTool.Commands.Test.TestPickPointCircleCommand",
+            "LongTool.Commands.Test.TestFormDialogCommand",
+            "Nhấn vào nút Test05",
+            $"{iconPath}Large/30-32.png",
+            $"{iconPath}Small/30-16.png");
 
     }
 }
