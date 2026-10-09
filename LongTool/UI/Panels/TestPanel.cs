@@ -15,7 +15,7 @@ public class TestPanel
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnTest", "Test",
             //"LongTool.Commands.Test.TestPickPointCircleCommand",
-            "LongTool.Commands.JohAbroad.DrawTableBoardCommand",
+            "LongTool.Commands.Test.TestLegendSelectionCommand",
             "Nhấn vào nút Test",
             $"{iconPath}Large/26-32.png",
             $"{iconPath}Small/26-16.png");
@@ -23,7 +23,7 @@ public class TestPanel
         buttonBuilder.AddPushButtonToPanel(panel,
             "btnTest02", "Test02",
             //"LongTool.Commands.Test.TestPickPointCircleCommand",
-            "LongTool.Commands.JohAbroad.BeamSectionDimensionCommand",
+            "LongTool.Commands.JohAbroad.DoorScheduleCommand",
             "Nhấn vào nút Test02",
             $"{iconPath}Large/27-32.png",
             $"{iconPath}Small/27-16.png");

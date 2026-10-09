@@ -1,19 +1,47 @@
 ﻿using LongTool.Models;
 using LongTool.Tables.Models;
 using LongTool.Tables.Models.Styles;
+using System;
 
 namespace LongTool.Tables.Builders;
 
 public static class DoorBoardBuilder
 {
     // ==================================================
+    // Padding cơ sở (đơn vị gốc, sẽ được nhân với scale)
+    // ==================================================
+
+    private const double BasePadding = 1.0;
+
+    // ==================================================
+    // Helper: áp padding cho một cell
+    // ==================================================
+
+    private static void ApplyPadding(
+        TableCell cell,
+        double scale)
+    {
+        double padding = BasePadding * scale;
+
+        cell.Style.PaddingLeft = padding;
+        cell.Style.PaddingRight = padding;
+        cell.Style.PaddingTop = padding;
+        cell.Style.PaddingBottom = padding;
+    }
+
+    // ==================================================
     // New method
-    // Create table from actual DoorScheduleItem
     // ==================================================
 
     public static Table CreateTable(
-        DoorScheduleItem door)
+        DoorScheduleItem door,
+        double scale = 1.0)
     {
+        if (scale <= 0)
+            throw new ArgumentOutOfRangeException(
+                nameof(scale),
+                "Scale must be greater than zero.");
+
         Table table = new Table();
 
         // ==================================================
@@ -26,300 +54,182 @@ public static class DoorBoardBuilder
         table.DefaultStyle.CellStyle.VerticalAlignment =
             TableVerticalAlignment.Middle;
 
+        table.DefaultStyle.CellStyle.PaddingLeft = BasePadding * scale;
+        table.DefaultStyle.CellStyle.PaddingRight = BasePadding * scale;
+        table.DefaultStyle.CellStyle.PaddingTop = BasePadding * scale;
+        table.DefaultStyle.CellStyle.PaddingBottom = BasePadding * scale;
+
         // ==================================================
         // 3 Columns
         // ==================================================
 
-        table.AddColumn(28);
-        table.AddColumn(95);
-        table.AddColumn(27);
+        table.AddColumn(28 * scale);
+        table.AddColumn(95 * scale);
+        table.AddColumn(27 * scale);
 
         // ==================================================
         // 8 Rows
         // ==================================================
 
-        table.AddRow(12);
-        table.AddRow(12);
-        table.AddRow(12);
-        table.AddRow(12);
-        table.AddRow(12);
-        table.AddRow(14);
-        table.AddRow(16);
-        table.AddRow(150);
+        table.AddRow(12 * scale);
+        table.AddRow(12 * scale);
+        table.AddRow(12 * scale);
+        table.AddRow(12 * scale);
+        table.AddRow(12 * scale);
+        table.AddRow(14 * scale);
+        table.AddRow(16 * scale);
+        table.AddRow(150 * scale);
 
         // ==================================================
         // Row 0
-        // 記号・数量
         // ==================================================
 
-        TableCell cellA0 =
-            table.Rows[0].AddCell();
+        TableCell cellA0 = table.Rows[0].AddCell();
+        cellA0.Name = "Cell_A0";
+        cellA0.Text = "記 号 ・ 数 量";
+        ApplyPadding(cellA0, scale);
 
-        cellA0.Name =
-            "Cell_A0";
+        TableCell cellB0 = table.Rows[0].AddCell();
+        cellB0.Name = "Cell_B0";
+        cellB0.Text = door.Symbol;
+        cellB0.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        ApplyPadding(cellB0, scale);
 
-        cellA0.Text =
-            "記 号 ・ 数 量";
-
-        TableCell cellB0 =
-            table.Rows[0].AddCell();
-
-        cellB0.Name =
-            "Cell_B0";
-
-        cellB0.Text =
-            door.Symbol;
-
-        cellB0.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        TableCell cellC0 =
-            table.Rows[0].AddCell();
-
-        cellC0.Name =
-            "Cell_C0";
-
-        cellC0.Text =
-            door.Quantity.ToString();
+        TableCell cellC0 = table.Rows[0].AddCell();
+        cellC0.Name = "Cell_C0";
+        cellC0.Text = door.Quantity.ToString();
+        ApplyPadding(cellC0, scale);
 
         // ==================================================
         // Row 1
-        // 型式
         // ==================================================
 
-        TableCell cellA1 =
-            table.Rows[1].AddCell();
+        TableCell cellA1 = table.Rows[1].AddCell();
+        cellA1.Name = "Cell_A1";
+        cellA1.Text = "型 式";
+        ApplyPadding(cellA1, scale);
 
-        cellA1.Name =
-            "Cell_A1";
-
-        cellA1.Text =
-            "型 式";
-
-        TableCell cellB1 =
-            table.Rows[1].AddCell();
-
-        cellB1.Name =
-            "Cell_B1";
-
-        cellB1.Text =
-            door.Type;
-
-        cellB1.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellB1.ColSpan =
-            2;
+        TableCell cellB1 = table.Rows[1].AddCell();
+        cellB1.Name = "Cell_B1";
+        cellB1.Text = door.Type;
+        cellB1.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellB1.ColSpan = 2;
+        ApplyPadding(cellB1, scale);
 
         // ==================================================
         // Row 2
-        // 場所
         // ==================================================
 
-        TableCell cellA2 =
-            table.Rows[2].AddCell();
+        TableCell cellA2 = table.Rows[2].AddCell();
+        cellA2.Name = "Cell_A2";
+        cellA2.Text = "場 所";
+        ApplyPadding(cellA2, scale);
 
-        cellA2.Name =
-            "Cell_A2";
-
-        cellA2.Text =
-            "場 所";
-
-        TableCell cellB2 =
-            table.Rows[2].AddCell();
-
-        cellB2.Name =
-            "Cell_B2";
-
-        cellB2.Text =
-            door.Location;
-
-        cellB2.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellB2.ColSpan =
-            2;
+        TableCell cellB2 = table.Rows[2].AddCell();
+        cellB2.Name = "Cell_B2";
+        cellB2.Text = door.Location;
+        cellB2.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellB2.ColSpan = 2;
+        ApplyPadding(cellB2, scale);
 
         // ==================================================
         // Row 3
-        // ガラス
         // ==================================================
 
-        TableCell cellA3 =
-            table.Rows[3].AddCell();
+        TableCell cellA3 = table.Rows[3].AddCell();
+        cellA3.Name = "Cell_A3";
+        cellA3.Text = "ガ ラ ス";
+        ApplyPadding(cellA3, scale);
 
-        cellA3.Name =
-            "Cell_A3";
-
-        cellA3.Text =
-            "ガ ラ ス";
-
-        TableCell cellB3 =
-            table.Rows[3].AddCell();
-
-        cellB3.Name =
-            "Cell_B3";
-
-        cellB3.Text =
-            door.Glass;
-
-        cellB3.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellB3.ColSpan =
-            2;
+        TableCell cellB3 = table.Rows[3].AddCell();
+        cellB3.Name = "Cell_B3";
+        cellB3.Text = door.Glass;
+        cellB3.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellB3.ColSpan = 2;
+        ApplyPadding(cellB3, scale);
 
         // ==================================================
         // Row 4
-        // 仕上
         // ==================================================
 
-        TableCell cellA4 =
-            table.Rows[4].AddCell();
+        TableCell cellA4 = table.Rows[4].AddCell();
+        cellA4.Name = "Cell_A4";
+        cellA4.Text = "仕 上";
+        ApplyPadding(cellA4, scale);
 
-        cellA4.Name =
-            "Cell_A4";
-
-        cellA4.Text =
-            "仕 上";
-
-        TableCell cellB4 =
-            table.Rows[4].AddCell();
-
-        cellB4.Name =
-            "Cell_B4";
-
-        cellB4.Text =
-            door.Finish;
-
-        cellB4.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellB4.ColSpan =
-            2;
+        TableCell cellB4 = table.Rows[4].AddCell();
+        cellB4.Name = "Cell_B4";
+        cellB4.Text = door.Finish;
+        cellB4.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellB4.ColSpan = 2;
+        ApplyPadding(cellB4, scale);
 
         // ==================================================
         // Row 5
-        // 金物
         // ==================================================
 
-        TableCell cellA5 =
-            table.Rows[5].AddCell();
+        TableCell cellA5 = table.Rows[5].AddCell();
+        cellA5.Name = "Cell_A5";
+        cellA5.Text = "金 物";
+        ApplyPadding(cellA5, scale);
 
-        cellA5.Name =
-            "Cell_A5";
-
-        cellA5.Text =
-            "金 物";
-
-        TableCell cellB5 =
-            table.Rows[5].AddCell();
-
-        cellB5.Name =
-            "Cell_B5";
-
-        cellB5.Text =
-            door.Hardware;
-
-        cellB5.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellB5.ColSpan =
-            2;
+        TableCell cellB5 = table.Rows[5].AddCell();
+        cellB5.Name = "Cell_B5";
+        cellB5.Text = door.Hardware;
+        cellB5.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellB5.ColSpan = 2;
+        ApplyPadding(cellB5, scale);
 
         // ==================================================
         // Row 6
-        // 備考 + 扉 / 枠
         // ==================================================
 
-        TableCell cellA6 =
-            table.Rows[6].AddCell();
+        TableCell cellA6 = table.Rows[6].AddCell();
+        cellA6.Name = "Cell_A6";
+        cellA6.Text = "備 考";
+        ApplyPadding(cellA6, scale);
 
-        cellA6.Name =
-            "Cell_A6";
+        TableCell cellB6 = table.Rows[6].AddCell();
+        cellB6.Name = "Cell_B6";
+        cellB6.Text = door.Remarks;
+        cellB6.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        ApplyPadding(cellB6, scale);
 
-        cellA6.Text =
-            "備 考";
-
-        TableCell cellB6 =
-            table.Rows[6].AddCell();
-
-        cellB6.Name =
-            "Cell_B6";
-
-        cellB6.Text =
-            door.Remarks;
-
-        cellB6.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        TableCell cellC6 =
-            table.Rows[6].AddCell();
-
-        cellC6.Name =
-            "Cell_C6";
-
+        TableCell cellC6 = table.Rows[6].AddCell();
+        cellC6.Name = "Cell_C6";
         cellC6.Text =
             $"扉　{door.DoorThickness}\n" +
             $"枠　{door.FrameThickness}";
-
-        cellC6.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellC6.Style.VerticalAlignment =
-            TableVerticalAlignment.Middle;
+        cellC6.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellC6.Style.VerticalAlignment = TableVerticalAlignment.Middle;
+        ApplyPadding(cellC6, scale);
 
         // ==================================================
         // Row 7
-        // 形状・寸法
         // ==================================================
 
-        TableCell cellA7 =
-            table.Rows[7].AddCell();
+        TableCell cellA7 = table.Rows[7].AddCell();
+        cellA7.Name = "Cell_A7";
+        cellA7.Text = "形 状 ・ 寸 法";
+        cellA7.Style.VerticalAlignment = TableVerticalAlignment.Top;
+        ApplyPadding(cellA7, scale);
 
-        cellA7.Name =
-            "Cell_A7";
-
-        cellA7.Text =
-            "形 状 ・ 寸 法";
-
-        cellA7.Style.VerticalAlignment =
-            TableVerticalAlignment.Top;
-
-        TableCell cellB7 =
-            table.Rows[7].AddCell();
-
-        cellB7.Name =
-            "Cell_B7_C7_Merged";
-
-        // ==================================================
-        // Keep empty for Door Legend
-        // ==================================================
-
-        cellB7.Text =
-            string.Empty;
-
-        cellB7.ColSpan =
-            2;
-
-        cellB7.Style.HorizontalAlignment =
-            TableHorizontalAlignment.Left;
-
-        cellB7.Style.VerticalAlignment =
-            TableVerticalAlignment.Top;
+        TableCell cellB7 = table.Rows[7].AddCell();
+        cellB7.Name = "Cell_B7_C7_Merged";
+        cellB7.Text = string.Empty;
+        cellB7.ColSpan = 2;
+        cellB7.Style.HorizontalAlignment = TableHorizontalAlignment.Left;
+        cellB7.Style.VerticalAlignment = TableVerticalAlignment.Top;
+        ApplyPadding(cellB7, scale);
 
         return table;
     }
 
-
     // ==================================================
     // Compatibility method
-    //
-    // Existing DrawTableBoardCommand still calls this.
-    // It will be removed/replaced in the next step.
     // ==================================================
 
-    public static Table CreateMergeTestTable()
+    public static Table CreateMergeTestTable(double scale = 1.0)
     {
         DoorScheduleItem door =
             new DoorScheduleItem
@@ -353,6 +263,6 @@ public static class DoorBoardBuilder
                     "165"
             };
 
-        return CreateTable(door);
+        return CreateTable(door, scale);
     }
 }

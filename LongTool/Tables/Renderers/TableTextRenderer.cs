@@ -23,6 +23,18 @@ public class TableTextRenderer
     //private const double MmToFeet = 1.0 / 304.8;
     private const double TextHeightMm = 2.5;
 
+    // ==================================================
+    // Cell đặc biệt: đặt legend component vào tâm ô
+    // ==================================================
+
+    private const string LegendCellName = "Cell_B7_C7_Merged";
+
+    /// <summary>
+    /// FamilySymbol của legend component (mặt đứng cửa).
+    /// Set từ bên ngoài trước khi gọi Render().
+    /// </summary>
+    public ElementId LegendSymbolId { get; set; }
+
     public TableTextRenderer(Document doc, View view, RevitRenderContext context)
     {
         _doc = doc ?? throw new ArgumentNullException(nameof(doc));
@@ -35,7 +47,7 @@ public class TableTextRenderer
                 _doc,
                 _view,
                 _textTypeId);
-                _debugMarker = new DebugMarkerRenderer(_doc, _view);
+        _debugMarker = new DebugMarkerRenderer(_doc, _view);
 
         SetupTextType();
     }
@@ -50,6 +62,20 @@ public class TableTextRenderer
 
     private void RenderCell(TableCellLayout cellLayout)
     {
+        // ==================================================
+        // Cell đặc biệt: đặt legend component thay vì text
+        // ==================================================
+
+        if (cellLayout.Cell.Name == LegendCellName)
+        {
+            PlaceLegendComponent(cellLayout);
+            return;
+        }
+
+        // ==================================================
+        // Cell thường: vẽ text như cũ
+        // ==================================================
+
         string text = cellLayout.Cell.Text;
 
         if (string.IsNullOrWhiteSpace(text))
@@ -66,22 +92,18 @@ public class TableTextRenderer
                 text,
                 _textTypeId);
 
-                        if (note == null)
-                            return;
-
+            if (note == null)
+                return;
 
             note.HorizontalAlignment =
                 ConvertHorizontalAlignment(
                     cellLayout.Style.HorizontalAlignment);
 
-
             note.VerticalAlignment =
                 ConvertVerticalAlignment(
                     cellLayout.Style.VerticalAlignment);
 
-
             _doc.Regenerate();
-
 
             TextMeasureResult result =
                 _measureService.Measure(
@@ -97,9 +119,67 @@ public class TableTextRenderer
         {
             Debug.WriteLine(ex);
         }
+    }
 
-        
+    // ==================================================
+    // PlaceLegendComponent
+    // Đặt legend component vào tâm ô cellLayout
+    // ==================================================
 
+    private void PlaceLegendComponent(TableCellLayout cellLayout)
+    {
+        if (LegendSymbolId == null ||
+            LegendSymbolId == ElementId.InvalidElementId)
+        {
+            // Không có symbol -> bỏ qua
+            Debug.WriteLine(
+                "LegendSymbolId chưa được set, bỏ qua đặt legend.");
+            return;
+        }
+
+        try
+        {
+            FamilySymbol symbol =
+                _doc.GetElement(LegendSymbolId) as FamilySymbol;
+
+            if (symbol == null)
+            {
+                Debug.WriteLine(
+                    "LegendSymbolId không phải FamilySymbol.");
+                return;
+            }
+
+            if (!symbol.IsActive)
+                symbol.Activate();
+
+            _doc.Regenerate();
+
+            // ----- Lấy tâm ô -----
+            XYZ position = _context.ToXYZ(cellLayout.Center);
+
+            // ----- Đặt legend component -----
+            FamilyInstance instance =
+                _doc.Create.NewFamilyInstance(
+                    position,
+                    symbol,
+                    _view);
+
+            if (instance == null)
+            {
+                Debug.WriteLine(
+                    "Không tạo được legend component.");
+                return;
+            }
+
+            if (DebugMode)
+            {
+                _debugMarker.DrawCross(position, 0.01);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+        }
     }
 
     private void SetupTextType()
@@ -128,7 +208,7 @@ public class TableTextRenderer
     }
 
     private HorizontalTextAlignment ConvertHorizontalAlignment(
-    TableHorizontalAlignment alignment)
+        TableHorizontalAlignment alignment)
     {
         return alignment switch
         {
@@ -145,8 +225,6 @@ public class TableTextRenderer
                 HorizontalTextAlignment.Left
         };
     }
-
-
 
     private VerticalTextAlignment ConvertVerticalAlignment(
         TableVerticalAlignment alignment)

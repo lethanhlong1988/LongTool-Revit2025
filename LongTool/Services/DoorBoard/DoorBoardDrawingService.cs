@@ -33,11 +33,20 @@ public class DoorBoardDrawingService
     /// <summary>
     /// Vẽ bảng Door Board lên Legend View đã có sẵn.
     /// </summary>
+    /// <param name="legendView">View Legend để vẽ bảng.</param>
+    /// <param name="door">Thông tin cửa.</param>
+    /// <param name="origin">Điểm gốc đặt bảng.</param>
+    /// <param name="textType">TextNoteType dùng cho text.</param>
+    /// <param name="legendSymbolId">
+    /// ElementId của FamilySymbol (Legend Component mặt đứng cửa).
+    /// Nếu null → bỏ qua bước đặt legend component.
+    /// </param>
     public void Draw(
         View legendView,
         DoorScheduleItem door,
         XYZ origin,
-        TextNoteType textType)
+        TextNoteType textType,
+        ElementId? legendSymbolId = null)
     {
         if (legendView == null)
             throw new ArgumentNullException(nameof(legendView));
@@ -50,7 +59,7 @@ public class DoorBoardDrawingService
 
         // 1. Build Door Table
         Tables.Models.Table table =
-            DoorBoardBuilder.CreateTable(door);
+            DoorBoardBuilder.CreateTable(door, 30);
 
         // 2. Auto Fit
         TableTextMeasureService textMeasure =
@@ -82,6 +91,11 @@ public class DoorBoardDrawingService
 
         TableTextRenderer textRenderer =
             new TableTextRenderer(_doc, legendView, context);
+
+        // Truyền legend symbol để TableTextRenderer đặt
+        // legend component vào ô Cell_B7_C7_Merged.
+        textRenderer.LegendSymbolId = legendSymbolId;
+
         textRenderer.Render(layout);
     }
 
@@ -121,14 +135,15 @@ public class DoorBoardDrawingService
         View templateView,
         DoorScheduleItem door,
         XYZ origin,
-        TextNoteType textType)
+        TextNoteType textType,
+        ElementId? legendSymbolId = null)
     {
         if (door == null)
             throw new ArgumentNullException(nameof(door));
 
         View newView = DuplicateLegend(templateView, door.Symbol);
 
-        Draw(newView, door, origin, textType);
+        Draw(newView, door, origin, textType, legendSymbolId);
 
         return newView;
     }

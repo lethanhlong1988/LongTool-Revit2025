@@ -6,7 +6,6 @@ using Autodesk.Revit.UI;
 using LongTool.Models;
 using LongTool.UI.DoorSchedule;
 
-
 namespace LongTool.Commands.JohAbroad
 {
     [Transaction(TransactionMode.ReadOnly)]
@@ -25,14 +24,12 @@ namespace LongTool.Commands.JohAbroad
 
             // ========================================
             // 1. Collect all Door instances
+            //    - Current Document
+            //    - All Loaded Revit Links
             // ========================================
 
             List<FamilyInstance> doors =
-                new FilteredElementCollector(doc)
-                    .OfCategory(BuiltInCategory.OST_Doors)
-                    .WhereElementIsNotElementType()
-                    .OfType<FamilyInstance>()
-                    .ToList();
+                CollectAllDoors(doc);
 
             // ========================================
             // 2. Read Door Parameters
@@ -154,8 +151,6 @@ namespace LongTool.Commands.JohAbroad
 
                         DoorThickness = group.First().DoorThickness,
                         FrameThickness = group.First().FrameThickness
-
-                       
                     })
                     .OrderBy(x => x.Symbol)
                     .ToList();
@@ -172,6 +167,67 @@ namespace LongTool.Commands.JohAbroad
             window.Show();
 
             return Result.Succeeded;
+        }
+
+        // ========================================
+        // Collect all Doors
+        //
+        // Includes:
+        // 1. Current Document
+        // 2. All Loaded Revit Links
+        // ========================================
+
+        private static List<FamilyInstance> CollectAllDoors(
+            Document currentDoc)
+        {
+            List<FamilyInstance> allDoors =
+                new List<FamilyInstance>();
+
+            // ========================================
+            // A. Doors in Current Document
+            // ========================================
+
+            List<FamilyInstance> currentDoors =
+                new FilteredElementCollector(currentDoc)
+                    .OfCategory(BuiltInCategory.OST_Doors)
+                    .WhereElementIsNotElementType()
+                    .OfType<FamilyInstance>()
+                    .ToList();
+
+            allDoors.AddRange(currentDoors);
+
+            // ========================================
+            // B. Doors in Revit Links
+            // ========================================
+
+            List<RevitLinkInstance> linkInstances =
+                new FilteredElementCollector(currentDoc)
+                    .OfClass(typeof(RevitLinkInstance))
+                    .Cast<RevitLinkInstance>()
+                    .ToList();
+
+            foreach (RevitLinkInstance linkInstance in linkInstances)
+            {
+                Document? linkDoc =
+                    linkInstance.GetLinkDocument();
+
+                // Link is unloaded or unavailable
+                if (linkDoc == null)
+                {
+                    continue;
+                }
+
+                List<FamilyInstance> linkedDoors =
+                    new FilteredElementCollector(linkDoc)
+                        .OfCategory(BuiltInCategory.OST_Doors)
+                        .WhereElementIsNotElementType()
+                        .OfType<FamilyInstance>()
+                        .ToList();
+
+                allDoors.AddRange(linkedDoors);
+            }
+
+            return allDoors;
         }
 
         // ========================================

@@ -77,6 +77,8 @@
 
 	<ItemGroup>
 
+		<Folder Include="Domain\Models\" />
+
 		<Folder Include="FinishEngine\Generation\" />
 		<Folder Include="FinishEngine\Debug\" />
 		<Folder Include="Parameters\" />

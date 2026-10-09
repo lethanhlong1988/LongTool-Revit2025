@@ -46,11 +46,31 @@ public class TestDoorBoardCommand : IExternalCommand
                 return Result.Cancelled;
             }
 
+            // ==================================================
+            // 1. Chọn Door symbol
+            // ==================================================
+
             FamilySymbol? doorSymbol =
                 SelectDoorSymbol(doc);
 
             if (doorSymbol == null)
                 return Result.Cancelled;
+
+            // ==================================================
+            // 2. Chọn Legend Component (mặt đứng cửa)
+            // ==================================================
+
+            FamilySymbol? legendSymbol =
+                SelectLegendSymbol(doc);
+
+            if (legendSymbol == null)
+                return Result.Cancelled;
+
+            ElementId legendSymbolId = legendSymbol.Id;
+
+            // ==================================================
+            // 3. Build DoorScheduleItem
+            // ==================================================
 
             DoorScheduleItem item =
                 BuildDoorScheduleItem(doorSymbol);
@@ -85,7 +105,8 @@ public class TestDoorBoardCommand : IExternalCommand
                     existingLegend,
                     item,
                     textType,
-                    targetLegendName);
+                    targetLegendName,
+                    legendSymbolId);
             }
 
             View? legendTemplate =
@@ -102,7 +123,8 @@ public class TestDoorBoardCommand : IExternalCommand
                 item,
                 textType,
                 targetLegendName,
-                doorSymbol);
+                doorSymbol,
+                legendSymbolId);
         }
         catch (Autodesk.Revit.Exceptions.OperationCanceledException)
         {
@@ -119,6 +141,10 @@ public class TestDoorBoardCommand : IExternalCommand
             return Result.Failed;
         }
     }
+
+    // ==================================================
+    // EXISTENCE CHECKS
+    // ==================================================
 
     private static bool HasDoor(Document doc)
     {
@@ -137,6 +163,10 @@ public class TestDoorBoardCommand : IExternalCommand
                 v.ViewType == ViewType.Legend &&
                 !v.IsTemplate);
     }
+
+    // ==================================================
+    // SELECTIONS
+    // ==================================================
 
     private static FamilySymbol? SelectDoorSymbol(
         Document doc)
@@ -158,6 +188,29 @@ public class TestDoorBoardCommand : IExternalCommand
             return null;
 
         return form.Results["Door"].Value
+            as FamilySymbol;
+    }
+
+    private static FamilySymbol? SelectLegendSymbol(
+        Document doc)
+    {
+        var fields =
+            new (string Key, ISelectionProvider Provider)[]
+            {
+                (
+                    "LegendSymbol",
+                    new LegendComponentSelectionProvider(doc)
+                )
+            };
+
+        var form = new FormDialogView(
+            "Door Board - Chọn Legend Component (mặt đứng cửa)",
+            fields);
+
+        if (form.ShowDialog() != true)
+            return null;
+
+        return form.Results["LegendSymbol"].Value
             as FamilySymbol;
     }
 
@@ -184,6 +237,10 @@ public class TestDoorBoardCommand : IExternalCommand
             as View;
     }
 
+    // ==================================================
+    // UPDATE EXISTING LEGEND
+    // ==================================================
+
     private static Result UpdateExistingLegend(
         UIDocument uidoc,
         Document doc,
@@ -191,7 +248,8 @@ public class TestDoorBoardCommand : IExternalCommand
         View existingLegend,
         DoorScheduleItem item,
         TextNoteType textType,
-        string targetLegendName)
+        string targetLegendName,
+        ElementId legendSymbolId)
     {
         // ------------------------------------------------------------
         // 1. Đọc metadata của Legend hiện tại
@@ -237,9 +295,6 @@ public class TestDoorBoardCommand : IExternalCommand
 
             // --------------------------------------------------------
             // 3.1 Duplicate Legend cũ
-            //
-            // Dùng Duplicate, KHÔNG dùng Duplicate with Detailing.
-            // Vì vậy Legend mới không mang theo nội dung Door Board cũ.
             // --------------------------------------------------------
 
             newLegend =
@@ -255,13 +310,11 @@ public class TestDoorBoardCommand : IExternalCommand
                 newLegend,
                 item,
                 origin,
-                textType);
+                textType,
+                legendSymbolId);
 
             // --------------------------------------------------------
             // 3.3 Lưu metadata cho Legend mới
-            //
-            // Giữ CreatedAt cũ.
-            // UpdatedAt sẽ được cập nhật trong Schema.Write().
             // --------------------------------------------------------
 
             service.SaveMetadata(
@@ -326,6 +379,10 @@ public class TestDoorBoardCommand : IExternalCommand
         return temporaryName;
     }
 
+    // ==================================================
+    // CREATE NEW LEGEND
+    // ==================================================
+
     private static Result CreateNewLegend(
         UIDocument uidoc,
         Document doc,
@@ -334,7 +391,8 @@ public class TestDoorBoardCommand : IExternalCommand
         DoorScheduleItem item,
         TextNoteType textType,
         string targetLegendName,
-        FamilySymbol doorSymbol)
+        FamilySymbol doorSymbol,
+        ElementId legendSymbolId)
     {
         if (doc.ActiveView.Id != legendTemplate.Id)
         {
@@ -367,7 +425,8 @@ public class TestDoorBoardCommand : IExternalCommand
                 createdView,
                 item,
                 newOrigin,
-                textType);
+                textType,
+                legendSymbolId);
 
             service.SaveMetadata(
                 createdView,
@@ -387,6 +446,10 @@ public class TestDoorBoardCommand : IExternalCommand
 
         return Result.Succeeded;
     }
+
+    // ==================================================
+    // BUILD ITEM
+    // ==================================================
 
     private static string GetTargetLegendName(
         DoorScheduleItem item)
